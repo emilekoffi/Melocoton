@@ -1,5 +1,6 @@
-## Melocoton
+# Melocoton
 
+#Overview
 Melocoton, is a young smartphone retailer company.
 The company is very dynamic, and in a space of a few year, business has been going pretty well, 3 shops have been launched in 3 different city.. 
 Facing such success, Sophia CEO and founder of the company, decided to face a new challenge. 
@@ -13,10 +14,10 @@ The compagny inteds to rely on this analyse to make up  sales strategy.
 The supply team gives you a selection of product that yoy will use for the analysis. 
 [Here is the link for the database used for this project.](https://www.kaggle.com/datasets/shreyasur965/phone-search-dataset)
 
-# Objective 1 - Cleanning the dataset. 
+## Objective 1 - Cleanning the dataset. 
 Organizing the data and make sure the dataset, and everypiece of data that we are going to use in the analyse is clean. 
 
-# Objective 2 - Exploring the data. 
+## Objective 2 - Exploring the data. 
 
 After importing data to the tables, performaing a Exploratory Data Analysis with SQL queries and to answer question to create insights about the data. This will include the following analysis:
 
