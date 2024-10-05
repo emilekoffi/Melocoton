@@ -24,3 +24,23 @@ After importing data to the tables, performaing a Exploratory Data Analysis with
 Price analysis
 Review Analysis
 label analysis. 
+
+# Process 
+For this analysis, I will be using the datasets:
+
+
+
+# Data cleanning
+
+First off, let's start with the dataset and its integrity. 
+
+The data is form Kaggle. There are few information about its authors, nor its provenance. 
+We only jnow that the data was collected using the "Real-Time Amazon Data" API from RapidAPI.
+The dataset was generated using an automated query to retrieve real-time data on phones available on Amazon. For each query, phone-related product data (including prices, ratings, and availability) was fetched using the API. Data collection was done iteratively over 100 pages to cover a broad range of phones, ensuring the inclusion of various price ranges, product types, and customer reviews. The process utilized the following query parameters: Query: "Phone" (ensures data is filtered for phone products) Page: Each iteration requested a new page to retrieve different sets of products. Country: US (data was specific to the US market). Sorting: Data was sorted by relevance, ensuring a diverse selection of phone products.
+
+It is important to underlight that there are few information about the period of time in which this data is valid, nor hase been taken. 
+Fotr the sake of the analysis, we're gonna consider as it was from the prior month as we have sales data from the past month. 
+
+
+
+
