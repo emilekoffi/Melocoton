@@ -1,6 +1,6 @@
 # Melocoton
 
-#Overview
+## Overview
 Melocoton, is a young smartphone retailer company.
 The company is very dynamic, and in a space of a few year, business has been going pretty well, 3 shops have been launched in 3 different city.. 
 Facing such success, Sophia CEO and founder of the company, decided to face a new challenge. 
