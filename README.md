@@ -26,7 +26,7 @@ Review Analysis
 label analysis. 
 
 # Process 
-For this analysis, I will be using the datasets:
+For this analysis, I will be using the datasets: phone_search
 
 
 
@@ -40,6 +40,20 @@ The dataset was generated using an automated query to retrieve real-time data on
 
 It is important to underlight that there are few information about the period of time in which this data is valid, nor hase been taken. 
 Fotr the sake of the analysis, we're gonna consider as it was from the prior month as we have sales data from the past month. 
+
+**Now the cleaning**
+
+The cleaning in done in GoogleSheet. 
+
+  - rermoving duplicates : select all rows; data ; cleaning data ; remove duplicates.
+21 rows eliminated, 320 rows left. 
+  - removing blank spaces : selact all rows; data; claening data ; remove blank space.
+none found
+  - Looking for empty cells : her we are gonna look for all colomns except for B; D ; H; I; T; O;  U; V
+In order to underlight the empty cells, we are gonna use conditionnal formartting.
+On all these colomns A1:A320, C1:C320, K1:K320, L1:L320, N1:N320, Q1:Q320, R1:R320, S1:S320, E1:E320, F1:F320, G1:G320, J1:J320, M1:M320, P1:P320
+the rule is to show the cell in red if it's empty
+
 
 
 
