@@ -88,7 +88,7 @@ I now have for one part the number, and in the other part the text "bought in pa
 I delete this second column as I won't use it. 
 In my colomn i now have the numbers, only thing is that the thousands are written as "K", 2000 = 2K. 
 I remplace all the K with 000.  To do so : edit -> search and replace -> search K, replace by 000, search'!P:P, replace all. 
-I now change the title to "aprox_past_month_sales_volume" as the value were not exact (4K+ for exemple). 
+I now change the title to "approx_past_month_sales_volume" as the value were not exact (4K+ for exemple). 
 
 I'll proceed for the same type of operation vfor the delivery column. 
 I'll split it in 2 with delivery as the separator, and replace FREE by 0.
@@ -137,7 +137,13 @@ Below is considered as a bad review.
 Melocoton is highly interested in products whith at least 3.5 stats.
 
 **How many reviews is enough to be significative ?** 
-A minimum of 1,000 reviewers is required for a rating to be considered significant. 
+A minimum of 1,000 reviews is required for a rating to be considered significant. 
+
+## Price analysis. 
+
+Does the price of the products plays a role on the sale ? 
+
+```sql
 
  
 
