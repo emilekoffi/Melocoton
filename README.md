@@ -106,10 +106,12 @@ Now I export the file in a CSV and then import it in Bigquerry
 
 I start with checking once again the number of distinct item. 
 
+```sql 
 SELECT 
 DISTINCT asin
- FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned`
-
+ FROM `phone_search.phone_search_cleaned`
+```
+ 
  
 
 
