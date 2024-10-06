@@ -14,10 +14,10 @@ The compagny inteds to rely on this analyse to make up  sales strategy.
 The supply team gives you a selection of product that yoy will use for the analysis. 
 [Here is the link for the database used for this project.](https://www.kaggle.com/datasets/shreyasur965/phone-search-dataset)
 
-## Objective 1 - Cleanning the dataset. 
+### Objective 1 - Cleanning the dataset. 
 Organizing the data and make sure the dataset, and everypiece of data that we are going to use in the analyse is clean. 
 
-## Objective 2 - Exploring the data. 
+### Objective 2 - Exploring the data. 
 
 After importing data to the tables, performaing a Exploratory Data Analysis with SQL queries and to answer question to create insights about the data. This will include the following analysis:
 
@@ -89,6 +89,12 @@ I delete this second column as I won't use it.
 In my colomn i now have the numbers, only thing is that the thousands are written as "K", 2000 = 2K. 
 I remplace all the K with 000.  To do so : edit -> search and replace -> search K, replace by 000, search'!P:P, replace all. 
 I now change the title to "aprox_past_month_sales_volume" as the value were not exact (4K+ for exemple). 
+
+I'll proceed for the same type of operation vfor the delivery column. 
+I'll split it in 2 with delivery as the separator, and replace FREE by 0.
+There was only one item without free delivery.  I manually deleted the dollar sign. 
+
+I manually delete the dollar sign in the 2 value of the unit_price column.
 
 
 
