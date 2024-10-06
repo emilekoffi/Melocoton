@@ -152,7 +152,23 @@ approx_past_month_sales_volume,
  ORDER BY approx_past_month_sales_volume DESC
 ```
 
-Fr now it's complicated to establish a link between the price and the sells, as the first 10 products  goes from 31.99 USD to 225.65 USD. 
+For now it's complicated to establish a link between the price and the sells, as the first 10 products goes from 31.99 USD to 225.65 USD. 
+
+But does the dicounts attract more sales ? 
+
+```sql
+SELECT 
+DISTINCT asin AS unique_asin,
+product_price AS with_discount,
+product_original_price AS without_discount,
+((product_original_price - product_price) / product_original_price)*100 AS discount,
+approx_past_month_sales_volume,
+FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned`
+WHERE product_original_price IS NOT NULL
+ORDER BY discount DESC
+```
+
+
 
 
 
