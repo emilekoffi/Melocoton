@@ -43,7 +43,7 @@ Fotr the sake of the analysis, we're gonna consider as it was from the prior mon
 
 **Now the cleaning**
 
-The cleaning in done in GoogleSheet. 
+The cleaning is done in GoogleSheet. 
 
   - rermoving duplicates : select all rows; data ; cleaning data ; remove duplicates.
 21 rows eliminated, 320 rows left. 
@@ -64,7 +64,15 @@ the rule is to show the cell in red if it's empty
     - M : No empty cells
     - N : No empty cells
     - P  : No empty cells
-    - Q : 
+    - Q : 17 empty cells. As I filter the colomns, I notice that there are other values that don't indicate the sales volume on the past month such as : "List:", "More Buying Choices", "Typical:" , "Typical price:" ,Shop products from small business brands sold in Amazon’s store. Discover more about the small businesses partnering with Amazon and Amazon’s commitment to empowering them.". 26 in total
+After verifying th elink for each product, we realize that, there a no values, or not the right value has been imported because amazon doesn't show the past month sales volume if there are not equal or higher to 50.
+As those prodcut has been sold in beetween 0 and 49 times last month, we are going to use "25+ bought in past month" as a new value.
+25 as it is the mean value.
+    -R  : No empty cells
+    -S  : No empty cells
+
+
+
 
 
 
