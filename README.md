@@ -23,7 +23,7 @@ After importing data to the tables, performaing a Exploratory Data Analysis with
 
 Price analysis
 Review Analysis
-label analysis. 
+Label analysis. 
 
 # Process 
 For this analysis, I will be using the datasets: phone_search
