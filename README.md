@@ -96,7 +96,11 @@ There was only one item without free delivery.  I manually deleted the dollar si
 
 I manually delete the dollar sign in the 2 value of the unit_price column.
 
+I now have a clean dataset ready for use. 
 
+# Exploring the data. 
+
+Now I export the file in a CSV and then import it in Bigquerry
 
 
 
