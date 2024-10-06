@@ -144,6 +144,17 @@ A minimum of 1,000 reviews is required for a rating to be considered significant
 Does the price of the products plays a role on the sale ? 
 
 ```sql
+SELECT 
+DISTINCT asin AS unique_asin,
+product_price,
+approx_past_month_sales_volume,
+ FROM `phone_search_cleaned`
+ ORDER BY approx_past_month_sales_volume DESC
+```
+
+Fr now it's complicated to establish a link between the price and the sells, as the first 10 products  goes from 31.99 USD to 225.65 USD. 
+
+
 
  
 
