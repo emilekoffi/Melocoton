@@ -68,8 +68,27 @@ the rule is to show the cell in red if it's empty
 After verifying th elink for each product, we realize that, there a no values, or not the right value has been imported because amazon doesn't show the past month sales volume if there are not equal or higher to 50.
 As those prodcut has been sold in beetween 0 and 49 times last month, we are going to use "25+ bought in past month" as a new value.
 25 as it is the mean value.
-    -R  : No empty cells
-    -S  : No empty cells
+    - R  : No empty cells
+    - S  : No empty cells
+   
+
+Now that I checked for duplicates, blank spaces,and empty cells, I'll proceed with making sure that the value have the best format to pêrfrom an alanysis later on. 
+I'll start with the all the price format. 
+As the the data base is extract form the USA amazon market, we can assume that all these datad are indeed in USD and I can then proceed to delete the dollar sign in colomn C, D, and K. 
+To delete de dollar sign : create a new colomn in between colomn C ans D. Select all colomn C except the title. then go to data -> split text -> use "$" as the customized separator. the new column now shows the price without the dollar sign. 
+I deleted the empty column and paste the title in the new column. 
+I repeat for the operation on D and L. 
+
+As the only currecny used is the USD, we can also delete E. 
+
+I relaize that the column P "sales_columes" have data that can be difficult to use in SQL. 
+I want to only keep nummers in this column. 
+To do so i'll split the text agin, using "+" as a seperator. 
+I now have for one part the number, and in the other part the text "bought in past month". 
+I delete this second column as I won't use it. 
+In my colomn i now have the numbers, only thing is that the thousands are written as "K", 2000 = 2K. 
+I remplace all the K with 000.  To do so : edit -> search and replace -> search K, replace by 000, search'!P:P, replace all. 
+I now change the title to "aprox_past_month_sales_volume" as the value were not exact (4K+ for exemple). 
 
 
 
