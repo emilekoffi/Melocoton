@@ -53,6 +53,20 @@ none found
 In order to underlight the empty cells, we are gonna use conditionnal formartting.
 On all these colomns A1:A320, C1:C320, K1:K320, L1:L320, N1:N320, Q1:Q320, R1:R320, S1:S320, E1:E320, F1:F320, G1:G320, J1:J320, M1:M320, P1:P320
 the rule is to show the cell in red if it's empty
+    - A : No empty cells
+    - C : 4 empty cells B0CMDLJR6K, B07ZHPCJW3, B07Z6Q9NCZ, B09R6FJWWS. As I don't really have information about when the data has been extracted, instead of using the        current price shown on the website, I delete the lines.
+    - E : No empty cells
+    - F : 3 empty cellsB0DFB9SNBR, B0D79Z15XR, B0DCQX683H. These cells are empty beccause the have never been rated as show the colomns G. The ceels value cannot be 0 as it will be incorrect. I'll put "/" instead.
+    - G : No empty cells
+    - J : No empty cells
+    - K : No empty cells
+    - L : No empty cells
+    - M : No empty cells
+    - N : No empty cells
+    - P  : No empty cells
+    - Q : 
+
+
 
 
 
