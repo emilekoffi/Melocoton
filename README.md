@@ -117,16 +117,27 @@ I now have 311 lines, meaning that 4 items were in double
 
 ### A few questions. 
 Before going deeper in th analysis there's a few questrions that needs to be asked to get a better understanding of the project. 
+Marketing team provided me the answers.
 
 **What does Best Seller Amazon means ?** 
+It is represented by the orange ribbon emblem in the upper-left corner of a product page and is given to top sellers. Customers may make an informed purchase choice by knowing which products have a higher product rating in terms of sales thanks to this emblem.
 
 **What does Amazon's Choice means ?** 
+Amazon's Choice makes it easy to discover products that other customers frequently choose for similar purchasing needs. Featured products like Amazon's Choice are rated highly by our customers, are available for immediate shipment and are well-priced. 
 
 **How many sales are enough to be considers thats a products sells well ?** 
+The targeted sales volumes is at least 500 sales monthly. 
 
 **What are the reviews standards ? What is the thereshold ?** 
+Reviews on Amazon are classified with stars, 5 stars being the most positive review possible, 0 the least.
+More than 4,2 stars is considered an execvellent review. 
+In beetwen 4.2 and 3.5 is a good review
+From 3,5 to 2.5 is medium 
+Below is considered as a bad review.
+Melocoton is highly interested in products whith at least 3.5 stats.
 
 **How many reviews is enough to be significative ?** 
+A minimum of 1,000 reviewers is required for a rating to be considered significant. 
 
  
 
