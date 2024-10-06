@@ -108,10 +108,26 @@ I start with checking once again the number of distinct item.
 
 ```sql 
 SELECT 
-DISTINCT asin
+DISTINCT asin AS unique_asin
  FROM `phone_search.phone_search_cleaned`
 ```
- 
+
+I now have 311 lines, meaning that 4 items were in double
+
+
+### A few questions. 
+Before going deeper in th analysis there's a few questrions that needs to be asked to get a better understanding of the project. 
+
+**What does Best Seller Amazon means ?** 
+
+**What does Amazon's Choice means ?** 
+
+**How many sales are enough to be considers thats a products sells well ?** 
+
+**What are the reviews standards ? What is the thereshold ?** 
+
+**How many reviews is enough to be significative ?** 
+
  
 
 
