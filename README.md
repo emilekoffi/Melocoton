@@ -206,11 +206,38 @@ Discounted products cost an acerage $183.3
 ```sql
 SELECT 
 ROUND (AVG(product_price),2) 
-FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+FROM `phone_search.phone_search_cleaned` 
 WHERE product_original_price IS NULL
 ```
 
-Non discounted products average price is 165.93
+Non-discounted products average price is 165.93
+
+Finally, I decide to check if the products for which the product minimum offer price is equal to the product price have a higher (or lower) price than the products with an higher price than the poduct minimum offer price.
+
+```sql
+SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price = product_minimum_offer_price
+```
+
+The product that have as a final price the lower offer for the preoduct sold an verage 194 unite last month. 
+
+```sql
+SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+```
+The product that have as an higher final price than the lowest offer for the product sold an average 514 units. 
+
+This means that when there is a choice to make, the price is not the main criteria. 
+
+
+
+
+
+
 
 
 
