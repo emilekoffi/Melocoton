@@ -259,6 +259,82 @@ Also a minimum of 1,000 reviews is required for a rating to be considered signif
 
 How many lines do we have including these paramaters. 
 ```sql
+SELECT 
+COUNT (product_star_rating)
+FROM `phone_search_cleaned` 
+WHERE product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+```
+
+118 products respects the standard quality set by the company.
+
+Let's see if the price analysis, still stands including the quality standard. 
+
+```SQL
+SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM
+(
+SELECT *
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+)
+WHERE product_original_price IS NOT NULL
+```
+
+Last month, the products with a discount, that have more than 3.5 stars from at least 1000 different reviews sold an average 719 units. 
+
+```sql
+SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM
+(
+SELECT *
+FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+WHERE product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+)
+WHERE product_original_price IS NULL
+```
+
+Last month, the products without a discount, that have more than 3.5 stars from at least 1000 different reviews sold an average 513 units. 
+
+Among good and excellent reviews, the sales trends sales trends havn't change regarding the product with and without discount. 
+
+
+```sql
+SELECT 
+ROUND (AVG(product_price),2) 
+FROM
+(
+SELECT *
+FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+WHERE product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+)
+WHERE product_original_price IS NOT NULL
+```
+
+average price discounted product 140.35 
+
+
+```sql
+SELECT 
+ROUND (AVG(product_price),2) 
+FROM
+(
+SELECT *
+FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+WHERE product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+)
+WHERE product_original_price IS NULL
+```
+
+average price non discounted product 157,3
+
+
 
 
 
