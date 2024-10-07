@@ -212,6 +212,8 @@ WHERE product_original_price IS NULL
 
 Non-discounted products average price is 165.93
 
+The discounted products, are the most sold products last month but, they are in average the most expeesives.
+
 Finally, I decide to check if the products for which the product minimum offer price is equal to the product price have a higher (or lower) price than the products with an higher price than the poduct minimum offer price.
 
 ```sql
@@ -231,7 +233,8 @@ WHERE product_price > product_minimum_offer_price
 ```
 The product that have as an higher final price than the lowest offer for the product sold an average 514 units. 
 
-This means that when there is a choice to make, the price is not the main criteria. 
+
+This means that when there is a choice to make, the price is not the main criteria selected by customers.
 
 
 
