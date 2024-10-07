@@ -148,7 +148,7 @@ SELECT
 DISTINCT asin AS unique_asin,
 product_price,
 approx_past_month_sales_volume,
- FROM `phone_search_cleaned`
+FROM `phone_search.phone_search_cleaned` 
  ORDER BY approx_past_month_sales_volume DESC
 ```
 
@@ -175,7 +175,7 @@ To dow so, I'm going to compare the average sales of dicounted products and non 
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
-FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+FROM `phone_search.phone_search_cleaned` 
 WHERE product_original_price IS NOT NULL
 ```
 
@@ -184,13 +184,35 @@ Last month, the products with a discount sold an average 540 units.
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
-FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+FROM `phone_search.phone_search_cleaned` 
 WHERE product_original_price IS NULL
 ```
 
 The products without discount sold an average 350. 
 
-On this base, product with discounts sells more units than the product with discount but;, this doesn't mean that the discounted product are less expensive than the product without discount. 
+On this base, product with discount sell more units than the product without discount but;, this doesn't mean that the discounted product are less expensive than the product without discount. 
+
+We are now cgoing to compare the average price of products with discount with the average sales af of product without discounts,
+
+```sql
+SELECT 
+ROUND (AVG(product_price),2) 
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_original_price IS NOT NULL
+```
+
+Discounted products cost an acerage $183.3 
+
+```sql
+SELECT 
+ROUND (AVG(product_price),2) 
+FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+WHERE product_original_price IS NULL
+```
+
+Non discounted products average price is 165.93
+
+
 
 
 
