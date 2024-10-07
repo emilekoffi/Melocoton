@@ -240,8 +240,9 @@ If we realize that discounted products are more sold, these product are not nece
 And when the customer gets to chose the same product with differents price options, most of the time they don't chose the cheapest option. 
 So, there are other option to consider and to analyze. 
 
-## Review analisis. 
+## Review analysis. 
 
+Is it possible to establish a relation between the sales and the reviews ? 
 
 
 
