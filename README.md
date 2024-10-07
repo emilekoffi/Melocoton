@@ -125,8 +125,6 @@ It is represented by the orange ribbon emblem in the upper-left corner of a prod
 **What does Amazon's Choice means ?** 
 Amazon's Choice makes it easy to discover products that other customers frequently choose for similar purchasing needs. Featured products like Amazon's Choice are rated highly by our customers, are available for immediate shipment and are well-priced. 
 
-**How many sales are enough to be considers thats a products sells well ?** 
-The targeted sales volumes is at least 500 sales monthly. 
 
 **What are the reviews standards ? What is the thereshold ?** 
 Reviews on Amazon are classified with stars, 5 stars being the most positive review possible, 0 the least.
@@ -243,6 +241,26 @@ So, there are other option to consider and to analyze.
 ## Review analysis. 
 
 Is it possible to establish a relation between the sales and the reviews ? 
+
+First let's start with seeing the range of the ratings. 
+
+```sql
+SELECT 
+MAX (product_star_rating),
+MIN (product_star_rating)
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_star_rating >= '0'
+```
+
+The range of rhe rantings goes from 1.6 to 5 
+
+As a reminder, th eompagny is highly interested in products whith at least 3.5 stats. 
+Also a minimum of 1,000 reviews is required for a rating to be considered significant. 
+
+How many lines do we have including these paramaters. 
+```sql
+
+
 
 
 
