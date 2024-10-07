@@ -163,10 +163,34 @@ product_price AS with_discount,
 product_original_price AS without_discount,
 ((product_original_price - product_price) / product_original_price)*100 AS discount,
 approx_past_month_sales_volume,
-FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned`
+FROM `phone_search.phone_search_cleaned`
 WHERE product_original_price IS NOT NULL
 ORDER BY discount DESC
 ```
+
+The results show that th eproducts with the highest dicount are not the one that are mos sold. 
+But this is not enough to come to the conclusion that discount products are more sold. 
+To dow so, I'm going to compare the average sales of dicounted products and non discouted product. 
+
+```sql
+SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+WHERE product_original_price IS NOT NULL
+```
+
+Last month, the products with a discount sold an average 540 units. 
+
+```sql
+SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+WHERE product_original_price IS NULL
+```
+
+The products without discount sold an average 350. 
+
+On this base, product with discounts sells more units than the product with discount but;, this doesn't mean that the discounted product are less expensive than the product without discount. 
 
 
 
