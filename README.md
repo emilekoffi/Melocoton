@@ -233,8 +233,16 @@ WHERE product_price > product_minimum_offer_price
 ```
 The product that have as an higher final price than the lowest offer for the product sold an average 514 units. 
 
-
 This means that when there is a choice to make, the price is not the main criteria selected by customers.
+
+The price analysis showed that the price cannot be the only criteria to consider. 
+If we realize that discounted products are more sold, these product are not necessary the cheapest.
+And when the customer gets to chose the same product with differents price options, most of the time they don't chose the cheapest option. 
+So, there are other option to consider and to analyze. 
+
+## Review analisis. 
+
+
 
 
 
