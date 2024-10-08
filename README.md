@@ -488,6 +488,129 @@ AND is_prime IS TRUE
 The result is 629 units
 
 
+Does the climate_pledge label has an impact on the sales ? 
+```sql
+SELECT 
+DISTINCT asin,
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND climate_pledge_friendly IS TRUE
+```
+35 results. 
+
+How many units did they sold on an average? 
+
+```sql
+SELECT
+ROUND(AVG(approx_past_month_sales_volume),0)
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND climate_pledge_friendly IS TRUE
+```
+
+642 units has been sold
+
+Le label climate_pledge_ratings is the labels that seems to have themore best selling proddcuts. 
+
+is it better to have variation ? 
+
+Les produits ayant des variations et le la label prime 
+```sql
+SELECT
+ROUND(AVG(approx_past_month_sales_volume),0)
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND is_prime IS TRUE
+AND has_variations IS TRUE
+```
+
+439 units
+
+```sql
+SELECT
+ROUND(AVG(approx_past_month_sales_volume),0)
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND climate_pledge_friendly IS TRUE
+AND has_variations IS TRUE
+AND approx_past_month_sales_volume >= 500
+
+```
+Parmi crs prodiits les produits possdent le label Climate Pledge Friedly, ont vendus en moyenne 718 units 
+
+
+
+Parmis ces produits lesquels ont vendu + de 500 unités le mois derniers ? 
+
+```sql
+SELECT
+DISTINCT asin,
+approx_past_month_sales_volume,
+product_star_rating,
+product_num_ratings
+FROM `phone_search.phone_search_cleaned` LIMIT 10
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND climate_pledge_friendly IS TRUE
+AND has_variations IS TRUE
+AND approx_past_month_sales_volume >= 500
+order by approx_past_month_sales_volume DESC
+```
+
+1	B07P6Y7954 2000 4.4 64977
+2	B088NQXD8T 2000 4.3 18826
+3	B08PPDJWC8 2000 4.1 13191
+4	B08L34JQ9C 2000 3.9 7272
+5	B096T6Y623 2000 3.9 2362
+6	B0BZ9XNBRB 1000 4.3 2482
+7	B08PMYLKVF 1000 4.2 10317
+8	B0991J62ZY 1000 3.8 1684
+9	B09LG4PSB6 500 4.1 1184
+10 B09LKXHWCF 500 4.1 4265
+
+
+
+
+
+```sql
+SELECT
+DISTINCT asin,
+approx_past_month_sales_volume,
+product_star_rating,
+product_num_ratings
+FROM `phone_search.phone_search_cleaned` LIMIT 10
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND is_prime IS TRUE
+AND has_variations IS TRUE
+AND approx_past_month_sales_volume >= 500
+order by approx_past_month_sales_volume DESC, product_star_rating DESC
+```
+
+1	B0C2SWQBMB 2000 4.2 2637
+2	B08L34JQ9C 2000 3.9 7272
+3	B096T6Y623 2000 3.9 2362
+4	B08H8VZ6PV 500 4.3 2927
+
+
+
+
+
+
+
+
+
+
  
 
 
