@@ -260,13 +260,13 @@ Also a minimum of 1,000 reviews is required for a rating to be considered signif
 How many lines do we have including these paramaters. 
 ```sql
 SELECT 
-COUNT (product_star_rating)
+DISTINCT asin
 FROM `phone_search_cleaned` 
 WHERE product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 ```
 
-118 products respects the standard quality set by the company.
+116 products respects the standard quality set by the company.
 
 Let's see if the price analysis, still stands including the quality standard. 
 
@@ -360,22 +360,75 @@ AND product_num_ratings >= 1000
 
 The price among these product is still not the m
 
-Among these products, let's compare to see if the better the grade the more they sell. 
+
+Voyons voir si les produits qui sont achetés par la qualité de leurs reviews se vendent mieux que les produits dont le principal argument était leur prix.
+
+```sql
+SELECT
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+```
+Those products solds in average 673
+
+Let's see how many of these 116 products that haven't been choosed beacuase they had the lowest price are respecting the compagny standards. 
 
 ```sql
 SELECT 
-ROUND (AVG (approx_past_month_sales_volume),0)
-FROM
-(
-SELECT *
-FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
-WHERE product_star_rating >= '4.2'
-AND product_num_ratings >= 1000
-)
-WHERE product_original_price IS NULL
+DISTINCT asin,
+product_star_rating
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
 ```
 
-La moyenne de vente des produits respectant les critères 492
+There are a total of 233 prodcuts that are bought, without beeing the cheapest option. 
+How many of them respect the company standards ? 
+
+```sql 
+SELECT 
+DISTINCT asin,
+product_star_rating
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating > '3.5'
+```
+
+
+219 of them have more at least 3.5 stars
+So 94% of these products are not bought because they're cheaper.
+Having more than 3.5 stars seems to be one of the main criteria 
+
+And about the products that have more than 3.5 stars and 100°0 reviews ? 
+
+
+```sql
+SELECT 
+DISTINCT asin,
+product_star_rating
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating > '3.5'
+AND product_num_ratings > 1000
+```
+
+106 results
+So 91% of the products that respects the comapny standards are products that haven't been bought only based on the price.
+48% of the products with more than 3.5 stars that haven't been chose becuase they were cheap have more than 1000 reviews.
+
+On peut alors de cette baseétablir que le prix, n'est pas le pricncipal critère choisis par les consommateurs au moment de l'achat de smartfone sur Amazon, les produitsayant la meilleure qualité de review sont les produits
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
