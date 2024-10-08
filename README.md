@@ -335,11 +335,11 @@ average price for non discounted product is 157,3
 Among good and excellent reviews, I don't have the same trends.
 The dicrounted products are cheaper and more sold here.
 
-###But does that mean that the price has become the mostimportant cireterion ? 
+### But does that mean that the price has become the mostimportant cireterion ? 
 
 Let's dive deeper within the products that haven't been choose beacause they were cheaper.
 
-** products that respect the quality requierment of the compny, and that have the lowest price offer.**
+**products that respect the quality requierment of the compny, and that have the lowest price offer.**
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
