@@ -452,9 +452,9 @@ On this basis, we can establish that price is not the main criterion chosen by c
 To take this a step further, let's see if the Amazon labels also have an impact on sales volume. 
 
 
-## Label analuysis and more. 
+## Label analysis and more. 
 
-###Does the labels have any impact on the sales of a product ? 
+### Does the labels have any impact on the sales of a product ? 
 
 **Does best seller label has an impact on the sales?**
 
