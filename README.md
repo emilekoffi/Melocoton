@@ -257,7 +257,7 @@ The range of rhe rantings goes from 1.6 to 5
 As a reminder, th eompagny is highly interested in products whith at least 3.5 stats. 
 Also a minimum of 1,000 reviews is required for a rating to be considered significant. 
 
-How many lines do we have including these paramaters. 
+How many product do I have including these paramaters. 
 ```sql
 SELECT 
 DISTINCT asin
@@ -270,6 +270,7 @@ AND product_num_ratings >= 1000
 
 ### Let's see if the price analysis, still stands including the quality standard. 
 
+** how many discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold ***
 ```SQL
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -282,9 +283,9 @@ AND product_num_ratings >= 1000
 )
 WHERE product_original_price IS NOT NULL
 ```
+An average 719 units.
 
-Last month, the products with a discount, that have more than 3.5 stars from at least 1000 different reviews sold an average 719 units.
-
+*** At what price ? ***
 ```sql
 SELECT 
 ROUND (AVG(product_price),2) 
@@ -300,6 +301,7 @@ WHERE product_original_price IS NOT NULL
 
 the average price discounted was 140.35
 
+**And how many non discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold ***
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -312,9 +314,9 @@ AND product_num_ratings >= 1000
 )
 WHERE product_original_price IS NULL
 ```
+An average of 513 units. 
 
-Last month, the products without a discount, that have more than 3.5 stars from at least 1000 different reviews sold an average 513 units. 
-
+** At what price ? ***
 ```sql
 SELECT 
 ROUND (AVG(product_price),2) 
@@ -332,7 +334,7 @@ average price for non discounted product is 157,3
 
 
 Among good and excellent reviews, I don't have the same trends.
-The dicrounted products are cheaper and more sold here. 
+The dicrounted products are cheaper and more sold here.
 
 ###But does that mean that the price has become the mostimportant cireteria ? 
 
@@ -347,7 +349,7 @@ FROM `phone_search.phone_search_cleaned`
 WHERE product_price = product_minimum_offer_price
 ```
 
-194 units sold
+194 units sold that only have the lower price offer for the product.
 
 ```sql
 SELECT 
@@ -356,7 +358,7 @@ FROM `phone_search.phone_search_cleaned`
 WHERE product_price = product_minimum_offer_price
 AND product_star_rating >= '3.5'
 ```
-214 units sold that have at leat 3.5 stars
+214 units sold that have at leat 3.5 stars and the lower price offer for the product.
 
 
 
@@ -368,11 +370,11 @@ WHERE product_price = product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 ```
-160 units sold that have at leat 3.5 stars from at least a 1000 differents review.
+160 units sold that have at leat 3.5 stars from at least a 1000 differents review and the lower  offer for the product.
 
 
-Voyons voir si les produits qui sont achetés par la qualité de leurs reviews se vendent mieux que les produits dont le principal argument était leur prix.
 
+** How about the products that are chosen on another criteria than the fact that they have the lower price ? **
 ```sql
 SELECT
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -431,7 +433,7 @@ AND product_star_rating > '3.5'
 So 94% of these products are not bought because they're cheaper.
 Having more than 3.5 stars seems to be one of the main criteria 
 
-And about the products that have more than 3.5 stars and 100°0 reviews ? 
+And about the products that have more than 3.5 stars and 1000 reviews ? 
 
 
 ```sql
@@ -448,14 +450,14 @@ AND product_num_ratings >= 1000
 So 91% of the products that respects the comapny standards are products that haven't been bought only based on the price.
 48% of the products with more than 3.5 stars that haven't been chose becuase they were cheap have more than 1000 reviews.
 
-On peut alors de cette baseétablir que le prix, n'est pas le pricncipal critère choisis par les consommateurs au moment de l'achat de smartfone sur Amazon, les produitsayant la meilleure qualité de review sont les produits. 
-Afin d'aller plus loin, voyons si les labels amazon permettent ont un impact également sur le volume des ventes. 
+On this basis, we can establish that price is not the main criterion chosen by consumers when buying a smartfone on Amazon, and that the products with the best review quality are those with the lowest price. 
+To take this a step further, let's see if the Amazon labels also have an impact on sales volume. 
 
 ## Label analuysis and more. 
 
-Does the labels have any impact on the sales of a product ? 
+###Does the labels have any impact on the sales of a product ? 
 
-Does best seller label has an impact on the sales? 
+** Does best seller label has an impact on the sales? **
 
 ```sql
 SELECT
@@ -469,7 +471,7 @@ AND is_best_seller IS TRUE
 There is only one product that does hae this label among the most sold products. 
 
 
-Does is_amazon_choice has an impact on the sales ? 
+** Does is_amazon_choice has an impact on the sales ? **
 ```sql
 SELECT
 DISTINCT asin
@@ -481,8 +483,7 @@ AND is_amazon_choice IS TRUE
 ```
 There is also only one result also, this is not significative enough. 
 
-Does is_prime has an impact on the sales ? 
-
+** Does is_prime has an impact on the sales ? **
 ```sql
 SELECT
 DISTINCT asin
@@ -492,11 +493,12 @@ AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 AND is_prime IS TRUE
 ```
- There is 73 oif these products that are PRME product. 
+ There is 73 of these products that are PRME product. 
 
- Are those products more sold ? 
+ 
+## Are those products more sold ? 
 
- ```sql
+```sql
 SELECT
 ROUND(AVG(approx_past_month_sales_volume),0)
 FROM `phone_search.phone_search_cleaned` 
@@ -535,9 +537,9 @@ AND climate_pledge_friendly IS TRUE
 
 642 units has been sold
 
-Le label climate_pledge_ratings is the labels that seems to have themore best selling proddcuts. 
+The label climate_pledge_ratings is the labels that seems to have themore best selling proddcuts. 
 
-is it better to have variation ? 
+## is it better to have variation ? 
 
 Les produits ayant des variations et le la label prime 
 ```sql
