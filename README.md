@@ -168,8 +168,9 @@ ORDER BY discount DESC
 
 The results show that the products with the highest dicount are not the ones that are most sold. 
 But this is not enough to come to the conclusion that discount products are more sold. 
-To dow so, I'm going to compare the average sales of dicounted products and non discouted product. 
 
+
+To dow so, I'm going to compare the average sales of dicounted products and non discouted product. 
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -190,8 +191,7 @@ The products without discount sold an average 350.
 
 On this base, product with discount sell more units than the product without discount but;, this doesn't mean that the discounted product are less expensive than the product without discount. 
 
-We are now cgoing to compare the average price of products with discount with the average sales af of product without discounts,
-
+**I am now going to compare the average price of products with discount with the average sales af of product without discounts,**
 ```sql
 SELECT 
 ROUND (AVG(product_price),2) 
@@ -212,8 +212,7 @@ Non-discounted products average price is 165.93
 
 The discounted products, are the most sold products last month but, they are in average the most expeesives.
 
-Finally, I decide to check if the products for which the product minimum offer price is equal to the product price have a higher (or lower) price than the products with an higher price than the poduct minimum offer price.
-
+**Finally, I decide to check if the products for which the product minimum offer price is equal to the product price have a higher (or lower) price than the products with an higher price than the poduct minimum offer price.**
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -270,7 +269,7 @@ AND product_num_ratings >= 1000
 
 ### Let's see if the price analysis, still stands including the quality standard. 
 
-** how many discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold ***
+**how many discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold**
 ```SQL
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -285,7 +284,7 @@ WHERE product_original_price IS NOT NULL
 ```
 An average 719 units.
 
-*** At what price ? ***
+**At what price ? **
 ```sql
 SELECT 
 ROUND (AVG(product_price),2) 
@@ -301,7 +300,7 @@ WHERE product_original_price IS NOT NULL
 
 the average price discounted was 140.35
 
-**And how many non discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold ***
+**And how many non discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold**
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -316,7 +315,7 @@ WHERE product_original_price IS NULL
 ```
 An average of 513 units. 
 
-** At what price ? ***
+**At what price ?**
 ```sql
 SELECT 
 ROUND (AVG(product_price),2) 
@@ -336,12 +335,11 @@ average price for non discounted product is 157,3
 Among good and excellent reviews, I don't have the same trends.
 The dicrounted products are cheaper and more sold here.
 
-###But does that mean that the price has become the mostimportant cireteria ? 
+###But does that mean that the price has become the mostimportant cireterion ? 
 
 Let's dive deeper within the products that haven't been choose beacause they were cheaper.
 
 ** products that respect the quality requierment of the compny, and that have the lowest price offer.**
-
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -374,7 +372,7 @@ AND product_num_ratings >= 1000
 
 
 
-** How about the products that are chosen on another criteria than the fact that they have the lower price ? **
+**How about the products that are chosen on another criteria than the fact that they have the lower price ?**
 ```sql
 SELECT
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -401,13 +399,12 @@ WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 ```
-673 sales in average . 
+673 sales in average. 
 
 Still the customer makes its choice based on other criteria than the price among thse type of products (with these criteria)
 
 
-** Let's see how many of these 116 products that haven't been choosed beacuase they had the lowest price are respecting the compagny standards. **
-
+**Let's see how many of these 116 products that haven't been choosed because they had the lowest price are respecting the compagny standards.**
 ```sql
 SELECT 
 DISTINCT asin,
@@ -447,17 +444,19 @@ AND product_num_ratings >= 1000
 ```
 
 106 results
+
 So 91% of the products that respects the comapny standards are products that haven't been bought only based on the price.
 48% of the products with more than 3.5 stars that haven't been chose becuase they were cheap have more than 1000 reviews.
 
 On this basis, we can establish that price is not the main criterion chosen by consumers when buying a smartfone on Amazon, and that the products with the best review quality are those with the lowest price. 
 To take this a step further, let's see if the Amazon labels also have an impact on sales volume. 
 
+
 ## Label analuysis and more. 
 
 ###Does the labels have any impact on the sales of a product ? 
 
-** Does best seller label has an impact on the sales? **
+**Does best seller label has an impact on the sales?**
 
 ```sql
 SELECT
@@ -471,7 +470,7 @@ AND is_best_seller IS TRUE
 There is only one product that does hae this label among the most sold products. 
 
 
-** Does is_amazon_choice has an impact on the sales ? **
+**Does is_amazon_choice has an impact on the sales ?**
 ```sql
 SELECT
 DISTINCT asin
@@ -483,7 +482,7 @@ AND is_amazon_choice IS TRUE
 ```
 There is also only one result also, this is not significative enough. 
 
-** Does is_prime has an impact on the sales ? **
+**Does is_prime has an impact on the sales ?**
 ```sql
 SELECT
 DISTINCT asin
@@ -523,8 +522,7 @@ AND climate_pledge_friendly IS TRUE
 ```
 35 results. 
 
-How many units did they sold on an average? 
-
+**How many units did they sold on an average?** 
 ```sql
 SELECT
 ROUND(AVG(approx_past_month_sales_volume),0)
@@ -541,7 +539,7 @@ The label climate_pledge_ratings is the labels that seems to have themore best s
 
 ## is it better to have variation ? 
 
-Les produits ayant des variations et le la label prime 
+**Products with variations and the Prime label**
 ```sql
 SELECT
 ROUND(AVG(approx_past_month_sales_volume),0)
@@ -556,6 +554,7 @@ AND has_variations IS TRUE
 
 439 units
 
+**Products with variations and the Climate Pledge Friendly label**
 ```sql
 SELECT
 ROUND(AVG(approx_past_month_sales_volume),0)
@@ -567,12 +566,11 @@ AND climate_pledge_friendly IS TRUE
 AND has_variations IS TRUE
 
 ```
-Parmi crs prodiits les produits possdent le label Climate Pledge Friedly, ont vendus en moyenne 718 units 
+En average 718 units sold
 
 
 
-Parmis ces produits lesquels ont vendu + de 500 unités le mois derniers ? 
-
+**Which of these products having the Pime and Climate Pledge Friendly sold more than 500 units last month?** 
 ```sql
 SELECT
 DISTINCT asin,
@@ -588,6 +586,7 @@ AND has_variations IS TRUE
 AND approx_past_month_sales_volume >= 500
 order by approx_past_month_sales_volume DESC
 ```
+Most sold products with the Climate Pledge Friendly label
 
 - 1	B07P6Y7954 2000 4.4 64977
 - 2	B088NQXD8T 2000 4.3 18826
@@ -599,7 +598,6 @@ order by approx_past_month_sales_volume DESC
 - 8	B0991J62ZY 1000 3.8 1684
 - 9	B09LG4PSB6 500 4.1 1184
 - 10 B09LKXHWCF 500 4.1 4265
-
 
 
 
@@ -619,6 +617,7 @@ AND has_variations IS TRUE
 AND approx_past_month_sales_volume >= 500
 order by approx_past_month_sales_volume DESC, product_star_rating DESC
 ```
+Most sold products with the Climate Pledge Friendly label
 
 - 1	B0C2SWQBMB 2000 4.2 2637
 - 2	B08L34JQ9C 2000 3.9 7272
