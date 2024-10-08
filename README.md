@@ -528,6 +528,7 @@ AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 AND is_prime IS TRUE
 AND has_variations IS TRUE
+
 ```
 
 439 units
@@ -541,7 +542,6 @@ AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 AND climate_pledge_friendly IS TRUE
 AND has_variations IS TRUE
-AND approx_past_month_sales_volume >= 500
 
 ```
 Parmi crs prodiits les produits possdent le label Climate Pledge Friedly, ont vendus en moyenne 718 units 
@@ -566,16 +566,16 @@ AND approx_past_month_sales_volume >= 500
 order by approx_past_month_sales_volume DESC
 ```
 
-1	B07P6Y7954 2000 4.4 64977
-2	B088NQXD8T 2000 4.3 18826
-3	B08PPDJWC8 2000 4.1 13191
-4	B08L34JQ9C 2000 3.9 7272
-5	B096T6Y623 2000 3.9 2362
-6	B0BZ9XNBRB 1000 4.3 2482
-7	B08PMYLKVF 1000 4.2 10317
-8	B0991J62ZY 1000 3.8 1684
-9	B09LG4PSB6 500 4.1 1184
-10 B09LKXHWCF 500 4.1 4265
+ 1	B07P6Y7954 2000 4.4 64977
+ 2	B088NQXD8T 2000 4.3 18826
+ 3	B08PPDJWC8 2000 4.1 13191
+ 4	B08L34JQ9C 2000 3.9 7272
+ 5	B096T6Y623 2000 3.9 2362
+ 6	B0BZ9XNBRB 1000 4.3 2482
+ 7	B08PMYLKVF 1000 4.2 10317
+ 8	B0991J62ZY 1000 3.8 1684
+ 9	B09LG4PSB6 500 4.1 1184
+ 10 B09LKXHWCF 500 4.1 4265
 
 
 
