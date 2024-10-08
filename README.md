@@ -362,6 +362,20 @@ The price among these product is still not the m
 
 Among these products, let's compare to see if the better the grade the more they sell. 
 
+```sql
+SELECT 
+ROUND (AVG (approx_past_month_sales_volume),0)
+FROM
+(
+SELECT *
+FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+WHERE product_star_rating >= '4.2'
+AND product_num_ratings >= 1000
+)
+WHERE product_original_price IS NULL
+```
+
+La moyenne de vente des produits respectant les critères 492
 
 
 
