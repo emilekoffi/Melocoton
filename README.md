@@ -346,6 +346,26 @@ AND product_num_ratings >= 1000
 
 160 sales in average
 
+Voyons voir si les produits qui sont achetés par la qualité de leurs reviews se vendent mieux que les produits dont le principal argument était leur prix.
+
+```sql
+SELECT
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+```
+Those products solds in average 514
+
+```sql
+SELECT
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating > '3.5'
+```
+average 534 units solds 
+
+
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -361,15 +381,7 @@ AND product_num_ratings >= 1000
 The price among these product is still not the m
 
 
-Voyons voir si les produits qui sont achetés par la qualité de leurs reviews se vendent mieux que les produits dont le principal argument était leur prix.
 
-```sql
-SELECT
-ROUND (AVG(approx_past_month_sales_volume),0) 
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-```
-Those products solds in average 673
 
 Let's see how many of these 116 products that haven't been choosed beacuase they had the lowest price are respecting the compagny standards. 
 
@@ -415,7 +427,10 @@ AND product_num_ratings > 1000
 So 91% of the products that respects the comapny standards are products that haven't been bought only based on the price.
 48% of the products with more than 3.5 stars that haven't been chose becuase they were cheap have more than 1000 reviews.
 
-On peut alors de cette baseétablir que le prix, n'est pas le pricncipal critère choisis par les consommateurs au moment de l'achat de smartfone sur Amazon, les produitsayant la meilleure qualité de review sont les produits
+On peut alors de cette baseétablir que le prix, n'est pas le pricncipal critère choisis par les consommateurs au moment de l'achat de smartfone sur Amazon, les produitsayant la meilleure qualité de review sont les produits. 
+Afin d'aller plus loin, voyons si les labels amazon permettent ont un impact également sur le volume des ventes. 
+
+
 
 
 
