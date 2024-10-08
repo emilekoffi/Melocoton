@@ -268,7 +268,7 @@ AND product_num_ratings >= 1000
 
 116 products respects the standard quality set by the company.
 
-Let's see if the price analysis, still stands including the quality standard. 
+### Let's see if the price analysis, still stands including the quality standard. 
 
 ```SQL
 SELECT 
@@ -283,7 +283,22 @@ AND product_num_ratings >= 1000
 WHERE product_original_price IS NOT NULL
 ```
 
-Last month, the products with a discount, that have more than 3.5 stars from at least 1000 different reviews sold an average 719 units. 
+Last month, the products with a discount, that have more than 3.5 stars from at least 1000 different reviews sold an average 719 units.
+
+```sql
+SELECT 
+ROUND (AVG(product_price),2) 
+FROM
+(
+SELECT *
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+)
+WHERE product_original_price IS NOT NULL
+```
+
+the average price discounted was 140.35
 
 ```sql
 SELECT 
@@ -300,28 +315,6 @@ WHERE product_original_price IS NULL
 
 Last month, the products without a discount, that have more than 3.5 stars from at least 1000 different reviews sold an average 513 units. 
 
-Among good and excellent reviews, the sales trends sales trends havn't change regarding the product with and without discount. 
-
-### Comme nous avons vu que les prix n'était pas l'élémet pricipal pour les clients, est ce que les reviews sont alors plus pris en charge pour l'achat de phone sur Amazon ?
-
-
-
-```sql
-SELECT 
-ROUND (AVG(product_price),2) 
-FROM
-(
-SELECT *
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-)
-WHERE product_original_price IS NOT NULL
-```
-
-average price discounted product 140.35 
-
-
 ```sql
 SELECT 
 ROUND (AVG(product_price),2) 
@@ -335,7 +328,36 @@ AND product_num_ratings >= 1000
 WHERE product_original_price IS NULL
 ```
 
-average price non discounted product 157,3
+average price for non discounted product is 157,3
+
+
+Among good and excellent reviews, I don't have the same trends.
+The dicrounted products are cheaper and more sold here. 
+
+###But does that mean that the price has become the mostimportant cireteria ? 
+
+Let's dive deeper within the products that haven't been choose beacause they were cheaper.
+
+** products that respect the quality requierment of the compny, and that have the lowest price offer.**
+
+```sql
+SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price = product_minimum_offer_price
+```
+
+194 units sold
+
+```sql
+SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price = product_minimum_offer_price
+AND product_star_rating >= '3.5'
+```
+214 units sold that have at leat 3.5 stars
+
 
 
 ```sql
@@ -346,8 +368,8 @@ WHERE product_price = product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 ```
+160 units sold that have at leat 3.5 stars from at least a 1000 differents review.
 
-160 sales in average
 
 Voyons voir si les produits qui sont achetés par la qualité de leurs reviews se vendent mieux que les produits dont le principal argument était leur prix.
 
@@ -379,14 +401,10 @@ AND product_num_ratings >= 1000
 ```
 673 sales in average . 
 
- Still the customer make its choice based on other criteria than the price among thse type of products (with these criteria)
-
-The price among these product is still not the m
+Still the customer makes its choice based on other criteria than the price among thse type of products (with these criteria)
 
 
-
-
-Let's see how many of these 116 products that haven't been choosed beacuase they had the lowest price are respecting the compagny standards. 
+** Let's see how many of these 116 products that haven't been choosed beacuase they had the lowest price are respecting the compagny standards. **
 
 ```sql
 SELECT 
