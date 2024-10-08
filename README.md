@@ -361,7 +361,7 @@ SELECT
 ROUND (AVG(approx_past_month_sales_volume),0) 
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
-AND product_star_rating > '3.5'
+AND product_star_rating >= '3.5'
 ```
 average 534 units solds 
 
@@ -406,7 +406,7 @@ AND product_star_rating > '3.5'
 ```
 
 
-219 of them have more at least 3.5 stars
+224 of them have more at least 3.5 stars
 So 94% of these products are not bought because they're cheaper.
 Having more than 3.5 stars seems to be one of the main criteria 
 
@@ -419,8 +419,8 @@ DISTINCT asin,
 product_star_rating
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
-AND product_star_rating > '3.5'
-AND product_num_ratings > 1000
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
 ```
 
 106 results
@@ -429,6 +429,71 @@ So 91% of the products that respects the comapny standards are products that hav
 
 On peut alors de cette baseétablir que le prix, n'est pas le pricncipal critère choisis par les consommateurs au moment de l'achat de smartfone sur Amazon, les produitsayant la meilleure qualité de review sont les produits. 
 Afin d'aller plus loin, voyons si les labels amazon permettent ont un impact également sur le volume des ventes. 
+
+## Label analuysis and more. 
+
+Does the labels have any impact on the sales of a product ? 
+
+Does best seller label has an impact on the sales? 
+
+```sql
+SELECT
+DISTINCT asin
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND is_best_seller IS TRUE
+```
+There is only one product that does hae this label among the most sold products. 
+
+
+Does is_amazon_choice has an impact on the sales ? 
+```sql
+SELECT
+DISTINCT asin
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND is_amazon_choice IS TRUE
+```
+There is also only one result also, this is not significative enough. 
+
+Does is_prime has an impact on the sales ? 
+
+```sql
+SELECT
+DISTINCT asin
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND is_prime IS TRUE
+```
+ There is 73 oif these products that are PRME product. 
+
+ Are those products more sold ? 
+
+ ```sql
+SELECT
+ROUND(AVG(approx_past_month_sales_volume),0)
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND is_prime IS TRUE
+```
+
+The result is 629 units
+
+
+ 
+
+
+
+
+
 
 
 
