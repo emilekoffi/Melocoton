@@ -284,7 +284,7 @@ WHERE product_original_price IS NOT NULL
 ```
 An average 719 units.
 
-**At what price ? **
+**At what price ?**
 ```sql
 SELECT 
 ROUND (AVG(product_price),2) 
