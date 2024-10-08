@@ -335,6 +335,37 @@ WHERE product_original_price IS NULL
 average price non discounted product 157,3
 
 
+```sql
+SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+WHERE product_price = product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+```
+
+160 sales in average
+
+```sql
+SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+```
+673 sales in average . 
+
+ Still the customer make its choice based on other criteria than the price among thse type of products (with these criteria)
+
+The price among these product is still not the m
+
+Among these products, let's compare to see if the better the grade the more they sell. 
+
+
+
+
+
 
 
 
