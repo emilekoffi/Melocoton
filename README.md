@@ -291,7 +291,7 @@ ROUND (AVG(approx_past_month_sales_volume),0)
 FROM
 (
 SELECT *
-FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+FROM `phone_search_cleaned` 
 WHERE product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 )
@@ -309,7 +309,7 @@ ROUND (AVG(product_price),2)
 FROM
 (
 SELECT *
-FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+FROM `phone_search.phone_search_cleaned` 
 WHERE product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 )
@@ -325,7 +325,7 @@ ROUND (AVG(product_price),2)
 FROM
 (
 SELECT *
-FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+FROM `phone_search.phone_search_cleaned` 
 WHERE product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 )
@@ -338,7 +338,7 @@ average price non discounted product 157,3
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
-FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+FROM `phone_search.phone_search_cleaned` 
 WHERE product_price = product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
@@ -349,7 +349,7 @@ AND product_num_ratings >= 1000
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
-FROM `my-project-coursera-certif-1.phone_search.phone_search_cleaned` 
+FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
