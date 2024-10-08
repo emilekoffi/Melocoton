@@ -152,7 +152,7 @@ FROM `phone_search.phone_search_cleaned`
 
 For now it's complicated to establish a link between the price and the sells, as the first 10 products goes from 31.99 USD to 225.65 USD. 
 
-But does the dicounts attract more sales ? 
+### But does dicounts attract more sales ? 
 
 ```sql
 SELECT 
@@ -166,7 +166,7 @@ WHERE product_original_price IS NOT NULL
 ORDER BY discount DESC
 ```
 
-The results show that th eproducts with the highest dicount are not the one that are mos sold. 
+The results show that the products with the highest dicount are not the ones that are most sold. 
 But this is not enough to come to the conclusion that discount products are more sold. 
 To dow so, I'm going to compare the average sales of dicounted products and non discouted product. 
 
@@ -240,7 +240,7 @@ So, there are other option to consider and to analyze.
 
 ## Review analysis. 
 
-Is it possible to establish a relation between the sales and the reviews ? 
+### Is it possible to establish a relation between the sales and the reviews ? 
 
 First let's start with seeing the range of the ratings. 
 
@@ -301,6 +301,9 @@ WHERE product_original_price IS NULL
 Last month, the products without a discount, that have more than 3.5 stars from at least 1000 different reviews sold an average 513 units. 
 
 Among good and excellent reviews, the sales trends sales trends havn't change regarding the product with and without discount. 
+
+### Comme nous avons vu que les prix n'était pas l'élémet pricipal pour les clients, est ce que les reviews sont alors plus pris en charge pour l'achat de phone sur Amazon ?
+
 
 
 ```sql
@@ -566,16 +569,16 @@ AND approx_past_month_sales_volume >= 500
 order by approx_past_month_sales_volume DESC
 ```
 
- 1	B07P6Y7954 2000 4.4 64977
- 2	B088NQXD8T 2000 4.3 18826
- 3	B08PPDJWC8 2000 4.1 13191
- 4	B08L34JQ9C 2000 3.9 7272
- 5	B096T6Y623 2000 3.9 2362
- 6	B0BZ9XNBRB 1000 4.3 2482
- 7	B08PMYLKVF 1000 4.2 10317
- 8	B0991J62ZY 1000 3.8 1684
- 9	B09LG4PSB6 500 4.1 1184
- 10 B09LKXHWCF 500 4.1 4265
+- 1	B07P6Y7954 2000 4.4 64977
+- 2	B088NQXD8T 2000 4.3 18826
+- 3	B08PPDJWC8 2000 4.1 13191
+- 4	B08L34JQ9C 2000 3.9 7272
+- 5	B096T6Y623 2000 3.9 2362
+- 6	B0BZ9XNBRB 1000 4.3 2482
+- 7	B08PMYLKVF 1000 4.2 10317
+- 8	B0991J62ZY 1000 3.8 1684
+- 9	B09LG4PSB6 500 4.1 1184
+- 10 B09LKXHWCF 500 4.1 4265
 
 
 
@@ -597,10 +600,10 @@ AND approx_past_month_sales_volume >= 500
 order by approx_past_month_sales_volume DESC, product_star_rating DESC
 ```
 
-1	B0C2SWQBMB 2000 4.2 2637
-2	B08L34JQ9C 2000 3.9 7272
-3	B096T6Y623 2000 3.9 2362
-4	B08H8VZ6PV 500 4.3 2927
+- 1	B0C2SWQBMB 2000 4.2 2637
+- 2	B08L34JQ9C 2000 3.9 7272
+- 3	B096T6Y623 2000 3.9 2362
+- 4	B08H8VZ6PV 500 4.3 2927
 
 
 
