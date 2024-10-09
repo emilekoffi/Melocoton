@@ -142,17 +142,18 @@ A minimum of 1,000 reviews is required for a rating to be considered significant
 Does the price of the products plays a role on the sale ? 
 
 ```sql
-SELECT 
-DISTINCT asin AS unique_asin,
-product_price,
-approx_past_month_sales_volume,
+SELECT
+MAX(product_price),
+MIN(product_price)
 FROM `phone_search.phone_search_cleaned` 
- ORDER BY approx_past_month_sales_volume DESC
+WHERE approx_past_month_sales_volume >=2000
 ```
 
-For now it's complicated to establish a link between the price and the sells, as the first 10 products goes from 31.99 USD to 225.65 USD. 
+For the time being, it is difficult to establish a relationship between sales volume and product price, as the best-selling products range in price from 18.45 to 287.3 USD.  
 
-### But does dicounts attract more sales ? 
+Sn, in order to establish this relationship, I'll start by analyzing whether products with discounts sell more than products without.
+
+### Does dicounts attract more sales ? 
 
 ```sql
 SELECT 
@@ -166,11 +167,11 @@ WHERE product_original_price IS NOT NULL
 ORDER BY discount DESC
 ```
 
-The results show that the products with the highest dicount are not the ones that are most sold. 
+I notice here that the products with the highest discounts are not the ones that sell the most.
 But this is not enough to come to the conclusion that discount products are more sold. 
 
 
-To dow so, I'm going to compare the average sales of dicounted products and non discouted product. 
+To take this a step further, I'm going to compare the average sales of products with discounts to the average sales of products without discounts.
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -189,7 +190,10 @@ WHERE product_original_price IS NULL
 
 The products without discount sold an average 350. 
 
-On this base, product with discount sell more units than the product without discount but;, this doesn't mean that the discounted product are less expensive than the product without discount. 
+Last month, products with discounts sold better than those without.
+However, I'm not sure that the discounted products are the cheapest. 
+So I'll take a closer look.
+
 
 **I am now going to compare the average price of products with discount with the average sales af of product without discounts,**
 ```sql
@@ -210,32 +214,49 @@ WHERE product_original_price IS NULL
 
 Non-discounted products average price is 165.93
 
-The discounted products, are the most sold products last month but, they are in average the most expeesives.
+Products with discounts sold better than those without, but paradoxically the latter were on average more expensive despite the discount. 
 
-**Finally, I decide to check if the products for which the product minimum offer price is equal to the product price have a higher (or lower) price than the products with an higher price than the poduct minimum offer price.**
+
+
+**In order to determine whether the price of a product is very important in the consumer's choice of purchase, I'm going to check whether the best-selling products are in fact those whose price offer was the lowest.**
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price = product_minimum_offer_price
+
 ```
 
-The product that have as a final price the lower offer for the preoduct sold an verage 194 unite last month. 
+Products priced at the lowest offer sold an average of 194 units.
+
+```
+SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0) 
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price = product_minimum_offer_price
+AND product_num_offers > 1
+```
+
+Il n'y a pas de résultat
 
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
+AND product_num_offers > 1
 ```
-The product that have as an higher final price than the lowest offer for the product sold an average 514 units. 
 
-This means that when there is a choice to make, the price is not the main criteria selected by customers.
+Products priced at the lowest offer sold an average of 514 units. 
+This means that when the consumer has had the choice of the same product at different prices, in the majority of cases, he hasn't chosen the cheapest offer and that the consumer only buys the products with the cheapest offer when he has no choice.
 
-The price analysis showed that the price cannot be the only criteria to consider. 
-If we realize that discounted products are more sold, these product are not necessary the cheapest.
-And when the customer gets to chose the same product with differents price options, most of the time they don't chose the cheapest option. 
-So, there are other option to consider and to analyze. 
+
+Price analysis has shown that price cannot be the only criterion to be taken into consideration. 
+While we know that discounted products sell better, they are not necessarily the cheapest.
+And when customers have the opportunity to choose the same product with different price options, they don't choose the cheapest option.
+They only do when they have no choice
+So there are other options besides price to consider and analyze . 
+
 
 ## Review analysis. 
 
@@ -256,11 +277,11 @@ The range of rhe rantings goes from 1.6 to 5
 As a reminder, th eompagny is highly interested in products whith at least 3.5 stats. 
 Also a minimum of 1,000 reviews is required for a rating to be considered significant. 
 
-How many product do I have including these paramaters. 
+How many products meet these criteria? 
 ```sql
 SELECT 
 DISTINCT asin
-FROM `phone_search_cleaned` 
+FROM `phone_search.phone_search_cleaned` 
 WHERE product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 ```
@@ -331,34 +352,14 @@ WHERE product_original_price IS NULL
 
 average price for non discounted product is 157,3
 
-
-Among good and excellent reviews, I don't have the same trends.
-The dicrounted products are cheaper and more sold here.
+Among products considered good and excellent, I don't really observe the same trends. 
+In addition to being the best-selling products on average, discounted products are also on average the least expensive.
 
 ### But does that mean that the price has become the mostimportant cireterion ? 
 
 Let's dive deeper within the products that haven't been choose beacause they were cheaper.
 
 **products that respect the quality requierment of the compny, and that have the lowest price offer.**
-```sql
-SELECT 
-ROUND (AVG(approx_past_month_sales_volume),0) 
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price = product_minimum_offer_price
-```
-
-194 units sold that only have the lower price offer for the product.
-
-```sql
-SELECT 
-ROUND (AVG(approx_past_month_sales_volume),0) 
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price = product_minimum_offer_price
-AND product_star_rating >= '3.5'
-```
-214 units sold that have at leat 3.5 stars and the lower price offer for the product.
-
-
 
 ```sql
 SELECT 
@@ -367,20 +368,27 @@ FROM `phone_search.phone_search_cleaned`
 WHERE product_price = product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
-```
-160 units sold that have at leat 3.5 stars from at least a 1000 differents review and the lower  offer for the product.
 
+```
+The result is still null
 
 
 **How about the products that are chosen on another criteria than the fact that they have the lower price ?**
+
+What about the products sold despite the fact that they don't offer the cheapest deal? 
+
+All products not offering the lowest price? 
 ```sql
 SELECT
 ROUND (AVG(approx_past_month_sales_volume),0) 
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
+AND product_num_offers > 1
+
 ```
 Those products solds in average 514
 
+All products not offering the lowest price with at least 3.5 stars? 
 ```sql
 SELECT
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -390,7 +398,7 @@ AND product_star_rating >= '3.5'
 ```
 average 534 units solds 
 
-
+All products not offering the lowest price with at least 3.5 stars and 1000 reviews.? 
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -401,54 +409,24 @@ AND product_num_ratings >= 1000
 ```
 673 sales in average. 
 
-Still the customer makes its choice based on other criteria than the price among thse type of products (with these criteria)
+I'm realizing that this trend is still valid, and even more so: the more qualitative criteria I add, the higher the average number of sales.
 
 
-**Let's see how many of these 116 products that haven't been choosed because they had the lowest price are respecting the compagny standards.**
+**Let's see how many of the 116 products complying with the company's quality standards are priced above the cheapest offer available.**
 ```sql
 SELECT 
-DISTINCT asin,
-product_star_rating
+COUNT (DISTINCT asin)
 FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-```
-
-There are a total of 233 prodcuts that are bought, without beeing the cheapest option. 
-How many of them respect the company standards ? 
-
-```sql 
-SELECT 
-DISTINCT asin,
-product_star_rating
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating > '3.5'
-```
-
-
-224 of them have more at least 3.5 stars
-So 94% of these products are not bought because they're cheaper.
-Having more than 3.5 stars seems to be one of the main criteria 
-
-And about the products that have more than 3.5 stars and 1000 reviews ? 
-
-
-```sql
-SELECT 
-DISTINCT asin,
-product_star_rating
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating >= '3.5'
+WHERE product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
+AND product_price > product_minimum_offer_price
+AND product_num_offers > 1
 ```
+106 produits, 91% of them.
+ 
 
-106 results
 
-So 91% of the products that respects the comapny standards are products that haven't been bought only based on the price.
-48% of the products with more than 3.5 stars that haven't been chose becuase they were cheap have more than 1000 reviews.
-
-On this basis, we can establish that price is not the main criterion chosen by consumers when buying a smartfone on Amazon, and that the products with the best review quality are those with the lowest price. 
+On this basis, we can establish that price is not the main criterion chosen by consumers when buying a phone related item on Amazon, Consummer seems to care a lot about the quelity of the product. 
 To take this a step further, let's see if the Amazon labels also have an impact on sales volume. 
 
 
