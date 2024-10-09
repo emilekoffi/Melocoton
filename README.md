@@ -149,6 +149,8 @@ FROM `phone_search.phone_search_cleaned`
 WHERE approx_past_month_sales_volume >=2000
 ```
 
+<img width="1165" alt="image" src="https://github.com/user-attachments/assets/7e65ab56-9ec8-4680-89d8-6f2742fa7dca">
+
 For the time being, it is difficult to establish a relationship between sales volume and product price, as the best-selling products range in price from 18.45 to 287.3 USD.  
 
 Sn, in order to establish this relationship, I'll start by analyzing whether products with discounts sell more than products without.
@@ -166,9 +168,6 @@ FROM `phone_search.phone_search_cleaned`
 WHERE product_original_price IS NOT NULL
 ORDER BY discount DESC
 ```
-
-
-<img width="1165" alt="image" src="https://github.com/user-attachments/assets/7e65ab56-9ec8-4680-89d8-6f2742fa7dca">
 
 
 I notice here that the products with the highest discounts are not the ones that sell the most.
