@@ -167,6 +167,10 @@ WHERE product_original_price IS NOT NULL
 ORDER BY discount DESC
 ```
 
+
+<img width="1165" alt="image" src="https://github.com/user-attachments/assets/7e65ab56-9ec8-4680-89d8-6f2742fa7dca">
+
+
 I notice here that the products with the highest discounts are not the ones that sell the most.
 But this is not enough to come to the conclusion that discount products are more sold. 
 
