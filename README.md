@@ -495,8 +495,8 @@ The result is 629 units
 
 Does the climate_pledge label has an impact on the sales ? 
 ```sql
-SELECT 
-DISTINCT asin,
+SELECT
+COUNT (DISTINCT asin),
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
