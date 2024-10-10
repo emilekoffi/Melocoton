@@ -364,7 +364,7 @@ AND product_num_ratings >= 1000
 WHERE product_original_price IS NULL
 ```
 
-<img width="1437" alt="image" src="https://github.com/user-attachments/assets/a092d298-f090-4aec-ad0a-a6ad8d10d369">
+<img width="1432" alt="image" src="https://github.com/user-attachments/assets/d246c7c8-7bf9-42a0-a2e1-306ad871294c">
 
 average price for non discounted product is 157,3
 
