@@ -443,7 +443,7 @@ To take this a step further, let's see if the Amazon labels also have an impact 
 
 ```sql
 SELECT
-DISTINCT asin
+COUNT (DISTINCT asin)
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
@@ -456,19 +456,19 @@ There is only one product that does hae this label among the most sold products.
 **Does is_amazon_choice has an impact on the sales ?**
 ```sql
 SELECT
-DISTINCT asin
+COUNT (DISTINCT asin) AS best_seller
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
-AND is_amazon_choice IS TRUE
+AND is_best_seller IS TRUE
 ```
 There is also only one result also, this is not significative enough. 
 
 **Does is_prime has an impact on the sales ?**
 ```sql
 SELECT
-DISTINCT asin
+COUNT (DISTINCT asin) AS is_prime
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
@@ -477,12 +477,23 @@ AND is_prime IS TRUE
 ```
  There is 73 of these products that are PRME product. 
 
+ ```sql
+SELECT
+COUNT (DISTINCT asin) AS is_not_prime
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND is_prime IS NOT TRUE
+```
  
-## Are those products more sold ? 
+34 products doesn't have the prime label.
+ 
+**Which have more sales ?** 
 
 ```sql
 SELECT
-ROUND(AVG(approx_past_month_sales_volume),0)
+ROUND(AVG(approx_past_month_sales_volume),0) AS average_prime_sales
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
@@ -490,7 +501,18 @@ AND product_num_ratings >= 1000
 AND is_prime IS TRUE
 ```
 
-The result is 629 units
+629 units for prime products. 
+
+```sql
+SELECT
+ROUND(AVG(approx_past_month_sales_volume),0) AS average_not_prime_sales
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND is_prime IS NOT TRUE
+```
+771 units for products that are not Prime
 
 
 Does the climate_pledge label has an impact on the sales ? 
@@ -503,7 +525,20 @@ AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 AND climate_pledge_friendly IS TRUE
 ```
-35 results. 
+35 products. 
+
+```sql
+SELECT
+COUNT (DISTINCT asin) AS not_climate_pledge_friendly,
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND climate_pledge_friendly IS NOT TRUE
+```
+
+71 products doesn't have
+
 
 **How many units did they sold on an average?** 
 ```sql
@@ -518,11 +553,6 @@ AND climate_pledge_friendly IS TRUE
 
 642 units has been sold
 
-The label climate_pledge_ratings is the labels that seems to have themore best selling proddcuts. 
-
-## is it better to have variation ? 
-
-**Products with variations and the Prime label**
 ```sql
 SELECT
 ROUND(AVG(approx_past_month_sales_volume),0)
@@ -530,14 +560,59 @@ FROM `phone_search.phone_search_cleaned`
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
-AND is_prime IS TRUE
-AND has_variations IS TRUE
-
+AND climate_pledge_friendly IS NOT TRUE
 ```
 
-439 units
+An average of 688 units of products that don't have the climate pledge friendly label ws sold.
 
-**Products with variations and the Climate Pledge Friendly label**
+**Conclusion** : 
+I can see that labels have no significant influence on sales. 
+In fact, for prime and Climate Pledge Friendly labels, products without them record higher average sales. 
+The Best Seller and Amazon`Choice labels, on the other hand, only appear on one product each. 
+They therefore don't seem to play a decisive role in consumers' purchasing decisions. 
+
+
+
+## Is it better to have variation ? 
+
+**Products with variations and the Prime label**
+```sql
+SELECT
+COUNT (DISTINCT asin),
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND has_variations IS TRUE
+```
+
+42 units
+
+```sql
+SELECT
+ROUND(AVG(approx_past_month_sales_volume),0)
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND has_variations IS TRUE
+```
+
+618 unts sold in average
+
+```sql
+SELECT
+COUNT (DISTINCT asin),
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND has_variations IS NOT TRUE
+```
+
+64 products without variation. 
+
+
 ```sql
 SELECT
 ROUND(AVG(approx_past_month_sales_volume),0)
@@ -551,6 +626,15 @@ AND has_variations IS TRUE
 ```
 En average 718 units sold
 
+```sql
+SELECT
+ROUND(AVG(approx_past_month_sales_volume),0)
+FROM `phone_search.phone_search_cleaned` 
+WHERE product_price > product_minimum_offer_price
+AND product_star_rating >= '3.5'
+AND product_num_ratings >= 1000
+AND has_variations IS NOT TRUE
+```
 
 
 **Which of these products having the Pime and Climate Pledge Friendly sold more than 500 units last month?** 
