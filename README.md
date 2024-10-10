@@ -310,6 +310,9 @@ WHERE product_original_price IS NOT NULL
 ```
 An average 719 units.
 
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/463b30b3-3b53-4f17-9e9d-2d2b7a03eecc">
+
+
 **At what price ?**
 ```sql
 SELECT 
@@ -326,6 +329,9 @@ WHERE product_original_price IS NOT NULL
 
 the average price discounted was 140.35
 
+<img width="1436" alt="image" src="https://github.com/user-attachments/assets/fc1c6d0b-0858-4c47-96a9-a9ee1057da0b">
+
+
 **And how many non discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold**
 ```sql
 SELECT 
@@ -333,13 +339,16 @@ ROUND (AVG(approx_past_month_sales_volume),0)
 FROM
 (
 SELECT *
-FROM `phone_search_cleaned` 
+FROM `phone_search.phone_search_cleaned` 
 WHERE product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 )
 WHERE product_original_price IS NULL
 ```
 An average of 513 units. 
+
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/9faee5d7-1c2b-4ecf-ad82-262cf12dfbbf">
+
 
 **At what price ?**
 ```sql
@@ -355,7 +364,12 @@ AND product_num_ratings >= 1000
 WHERE product_original_price IS NULL
 ```
 
+<img width="1437" alt="image" src="https://github.com/user-attachments/assets/a092d298-f090-4aec-ad0a-a6ad8d10d369">
+
 average price for non discounted product is 157,3
+
+
+
 
 Among products considered good and excellent, I don't really observe the same trends. 
 In addition to being the best-selling products on average, discounted products are also on average the least expensive.
