@@ -8,7 +8,7 @@ Launch its marketplace on Amazon and conquer the online market.
 In order to do so, Sophia, the young entrepreneur, decided to plan a meeting with marketting and supply. 
 The purpose of this meeting is to understand how the market on amazon works.
 She wants to keep the same dynamic as the physical shops, and to do so it's important to know the rules. 
-At the end of this meeting, I have been task to analyse amazon sales in order to identify trends amongs de sales.
+At the end of this meeting, I have been task to analyse amazon sales in order to identify trends among the most sold product
 The compagny inteds to rely on this analyse to make up  sales strategy. 
 
 The supply team gives you a selection of product that yoy will use for the analysis. 
@@ -573,9 +573,9 @@ They therefore don't seem to play a decisive role in consumers' purchasing decis
 
 
 
-## Is it better to have variation ? 
+## Do products with variations sell best? 
 
-**Products with variations and the Prime label**
+**How many products have variations?**
 ```sql
 SELECT
 COUNT (DISTINCT asin),
@@ -588,6 +588,7 @@ AND has_variations IS TRUE
 
 42 units
 
+**And how many units sold in average ?**
 ```sql
 SELECT
 ROUND(AVG(approx_past_month_sales_volume),0)
@@ -600,6 +601,8 @@ AND has_variations IS TRUE
 
 618 unts sold in average
 
+
+**How many products don't have variations?**
 ```sql
 SELECT
 COUNT (DISTINCT asin),
@@ -612,7 +615,7 @@ AND has_variations IS NOT TRUE
 
 64 products without variation. 
 
-
+**And how many units sold in average ?**
 ```sql
 SELECT
 ROUND(AVG(approx_past_month_sales_volume),0)
@@ -626,70 +629,8 @@ AND has_variations IS TRUE
 ```
 En average 718 units sold
 
-```sql
-SELECT
-ROUND(AVG(approx_past_month_sales_volume),0)
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-AND has_variations IS NOT TRUE
-```
-
-
-**Which of these products having the Pime and Climate Pledge Friendly sold more than 500 units last month?** 
-```sql
-SELECT
-DISTINCT asin,
-approx_past_month_sales_volume,
-product_star_rating,
-product_num_ratings
-FROM `phone_search.phone_search_cleaned` LIMIT 10
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-AND climate_pledge_friendly IS TRUE
-AND has_variations IS TRUE
-AND approx_past_month_sales_volume >= 500
-order by approx_past_month_sales_volume DESC
-```
-Most sold products with the Climate Pledge Friendly label
-
-- 1	B07P6Y7954 2000 4.4 64977
-- 2	B088NQXD8T 2000 4.3 18826
-- 3	B08PPDJWC8 2000 4.1 13191
-- 4	B08L34JQ9C 2000 3.9 7272
-- 5	B096T6Y623 2000 3.9 2362
-- 6	B0BZ9XNBRB 1000 4.3 2482
-- 7	B08PMYLKVF 1000 4.2 10317
-- 8	B0991J62ZY 1000 3.8 1684
-- 9	B09LG4PSB6 500 4.1 1184
-- 10 B09LKXHWCF 500 4.1 4265
-
-
-
-
-```sql
-SELECT
-DISTINCT asin,
-approx_past_month_sales_volume,
-product_star_rating,
-product_num_ratings
-FROM `phone_search.phone_search_cleaned` LIMIT 10
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-AND is_prime IS TRUE
-AND has_variations IS TRUE
-AND approx_past_month_sales_volume >= 500
-order by approx_past_month_sales_volume DESC, product_star_rating DESC
-```
-Most sold products with the Climate Pledge Friendly label
-
-- 1	B0C2SWQBMB 2000 4.2 2637
-- 2	B08L34JQ9C 2000 3.9 7272
-- 3	B096T6Y623 2000 3.9 2362
-- 4	B08H8VZ6PV 500 4.3 2927
+**Conclusion** : 
+Consumers don't seem to be influenced by the fact that products have variations either.  
 
 
 
