@@ -117,16 +117,16 @@ Before going deeper in th analysis there's a few questrions that needs to be ask
 Marketing team provided me the answers.
 
 **What does Best Seller Amazon means ?** 
-
 It is represented by the orange ribbon emblem in the upper-left corner of a product page and is given to top sellers. Customers may make an informed purchase choice by knowing which products have a higher product rating in terms of sales thanks to this emblem.
 
 **What does Amazon's Choice means ?** 
-
 Amazon's Choice makes it easy to discover products that other customers frequently choose for similar purchasing needs. Featured products like Amazon's Choice are rated highly by our customers, are available for immediate shipment and are well-priced. 
+
+**What is Climate Pledge Friendly**
+Climate Pledge Friendly highlights products that are recognized by at least one sustainability certification.
 
 
 **What are the reviews standards ? What is the thereshold ?** 
-
 Reviews on Amazon are classified with stars, 5 stars being the most positive review possible, 0 the least.
 More than 4,2 stars is considered an execvellent review. 
 In beetwen 4.2 and 3.5 is a good review
@@ -138,11 +138,9 @@ Melocoton is highly interested in products whith at least 3.5 stats.
 A minimum of 1,000 reviews is required for a rating to be considered significant. 
 
 **How many sales per product are we targeting ?** 
-
 At least 500
 
 ## Price analysis. 
-
 Does the price of the products plays a role on the sale ? 
 
 ```sql
@@ -152,6 +150,7 @@ MIN(product_price)
 FROM `phone_search.phone_search_cleaned` 
 WHERE approx_past_month_sales_volume >=2000
 ```
+
 
 <img width="1165" alt="image" src="https://github.com/user-attachments/assets/7e65ab56-9ec8-4680-89d8-6f2742fa7dca">
 
@@ -185,7 +184,7 @@ But this is not enough to come to the conclusion that discount products are more
 To take this a step further, I'm going to compare the average sales of products with discounts to the average sales of products without discounts.
 ```sql
 SELECT 
-ROUND (AVG(approx_past_month_sales_volume),0) 
+ROUND (AVG(approx_past_month_sales_volume),0) AS avg_discounted_sales_volume
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_original_price IS NOT NULL
 ```
@@ -194,24 +193,23 @@ Last month, the products with a discount sold an average 540 units.
 
 ```sql
 SELECT 
-ROUND (AVG(approx_past_month_sales_volume),0) 
+ROUND (AVG(approx_past_month_sales_volume),0) AS avg_without_discount_sales_volume
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_original_price IS NULL
 ```
 
 The products without discount sold an average 350. 
 
-Last month, products with discounts sold better than those without.
+Last month, products with discounts sold more than those without.
 However, I'm not sure that the discounted products are the cheapest. 
 So I'll take a closer look.
-
 
 
 
 ### I am now going to compare the average price of products with discount with the average sales af of product without discounts
 ```sql
 SELECT 
-ROUND (AVG(product_price),2) 
+ROUND (AVG(product_price),2) AS avg_dicounted_products_price
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_original_price IS NOT NULL
 ```
@@ -220,17 +218,14 @@ Discounted products cost an acerage $183.3
 
 ```sql
 SELECT 
-ROUND (AVG(product_price),2) 
+ROUND (AVG(product_price),2) avg_price_product_without_discount
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_original_price IS NULL
 ```
 
 Non-discounted products average price is 165.93
 
-Products with discounts sold better than those without, but paradoxically the latter were on average more expensive despite the discount. 
-
-
-
+Products with discounts sold more units than those without, but paradoxically the latter were on average more expensive despite the discount. 
 
 
 ### Is price a determining factor in consumer purchasing decisions? 
@@ -239,7 +234,7 @@ In order to determine whether the price of a product is very important in the co
 
 ```sql
 SELECT 
-ROUND (AVG(approx_past_month_sales_volume),0) 
+ROUND (AVG(approx_past_month_sales_volume),0) AS avg_sales_at_lower_offer
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price = product_minimum_offer_price
 
@@ -264,8 +259,7 @@ FROM `phone_search.phone_search_cleaned`
 WHERE product_price > product_minimum_offer_price
 AND product_num_offers > 1
 ```
-
-Products priced at the lowest offer sold an average of 514 units. 
+Products priced at an higher price than the lowest offer sold an average of 514 units. 
 This means that when the consumer has had the choice of the same product at different prices, in the majority of cases, he hasn't chosen the cheapest offer and that the consumer only buys the products with the cheapest offer when he has no choice.
 
 
@@ -292,7 +286,7 @@ WHERE product_star_rating >= '0'
 
 The range of rhe rantings goes from 1.6 to 5 
 
-As a reminder, th eompagny is highly interested in products whith at least 3.5 stats. 
+As a reminder, th compagny is highly interested in products whith at least 3.5 stats. 
 Also a minimum of 1,000 reviews is required for a rating to be considered significant. 
 
 How many products meet these criteria? 
@@ -308,27 +302,10 @@ AND product_num_ratings >= 1000
 
 ### Let's see if the price analysis, still stands including the quality standard. 
 
-**how many discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold**
+**how many discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold and at what price ?**
 ```SQL
 SELECT 
-ROUND (AVG(approx_past_month_sales_volume),0) 
-FROM
-(
-SELECT *
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-)
-WHERE product_original_price IS NOT NULL
-```
-An average 719 units.
-
-<img width="1440" alt="image" src="https://github.com/user-attachments/assets/463b30b3-3b53-4f17-9e9d-2d2b7a03eecc">
-
-
-**At what price ?**
-```sql
-SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0),
 ROUND (AVG(product_price),2) 
 FROM
 (
@@ -339,33 +316,15 @@ AND product_num_ratings >= 1000
 )
 WHERE product_original_price IS NOT NULL
 ```
+An average 719 units with an average price of 140.35 USD.
 
-the average price discounted was 140.35
-
-<img width="1436" alt="image" src="https://github.com/user-attachments/assets/fc1c6d0b-0858-4c47-96a9-a9ee1057da0b">
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/463b30b3-3b53-4f17-9e9d-2d2b7a03eecc">    <img width="1436" alt="image" src="https://github.com/user-attachments/assets/fc1c6d0b-0858-4c47-96a9-a9ee1057da0b">
 
 
-**And how many non discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold**
+**And how many non discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold and at what price ?**
 ```sql
 SELECT 
-ROUND (AVG(approx_past_month_sales_volume),0) 
-FROM
-(
-SELECT *
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-)
-WHERE product_original_price IS NULL
-```
-An average of 513 units. 
-
-<img width="1440" alt="image" src="https://github.com/user-attachments/assets/9faee5d7-1c2b-4ecf-ad82-262cf12dfbbf">
-
-
-**At what price ?**
-```sql
-SELECT 
+ROUND (AVG(approx_past_month_sales_volume),0),
 ROUND (AVG(product_price),2) 
 FROM
 (
@@ -376,12 +335,9 @@ AND product_num_ratings >= 1000
 )
 WHERE product_original_price IS NULL
 ```
+An average of 513 units for an average price of 157,3 USD.
 
-<img width="1432" alt="image" src="https://github.com/user-attachments/assets/d246c7c8-7bf9-42a0-a2e1-306ad871294c">
-
-average price for non discounted product is 157,3
-
-
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/9faee5d7-1c2b-4ecf-ad82-262cf12dfbbf">   <img width="1432" alt="image" src="https://github.com/user-attachments/assets/d246c7c8-7bf9-42a0-a2e1-306ad871294c">
 
 
 Among products considered good and excellent, I don't really observe the same trends. 
@@ -391,8 +347,7 @@ In addition to being the best-selling products on average, discounted products a
 
 Let's dive deeper within the products that haven't been choose beacause they were cheaper.
 
-**products that respect the quality requierment of the compny, and that have the lowest price offer.**
-
+**products that respect the quality requierment of the compny, and that have the lowest price offer when there is choice between different offers**
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -400,6 +355,7 @@ FROM `phone_search.phone_search_cleaned`
 WHERE product_price = product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
+AND product_num_offers > 1
 
 ```
 The result is still null
@@ -416,32 +372,12 @@ ROUND (AVG(approx_past_month_sales_volume),0)
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_num_offers > 1
-
-```
-Those products solds in average 514
-
-All products not offering the lowest price with at least 3.5 stars? 
-```sql
-SELECT
-ROUND (AVG(approx_past_month_sales_volume),0) 
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating >= '3.5'
-```
-average 534 units solds 
-
-All products not offering the lowest price with at least 3.5 stars and 1000 reviews.? 
-```sql
-SELECT 
-ROUND (AVG(approx_past_month_sales_volume),0) 
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 ```
-673 sales in average. 
+Those products solds in average 673 units.
 
-I'm realizing that this trend is still valid, and even more so: the more qualitative criteria I add, the higher the average number of sales.
+I realize that this trend is still valid
 
 
 **Let's see how many of the 116 products complying with the company's quality standards are priced above the cheapest offer available.**
