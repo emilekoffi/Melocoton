@@ -159,7 +159,8 @@ MIN(product_price)
 FROM `phone_search.phone_search_cleaned` 
 ```
 
-<img width="1437" alt="image" src="https://github.com/user-attachments/assets/442e2677-1dbd-40e3-a408-153a67290122">
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/212b2c9a-a3c4-408d-912f-71e2cde255bb">
+
 
 [Visualization link ](https://public.tableau.com/views/Melocoton1/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link))
 
@@ -183,7 +184,8 @@ WHERE product_original_price IS NOT NULL
 ORDER BY discount DESC
 ```
 
-<img width="724" alt="image" src="https://github.com/user-attachments/assets/6d2bc64a-5c78-4a86-8b06-2c35d2ca2e0e">
+<img width="1437" alt="image" src="https://github.com/user-attachments/assets/e6f069cb-01ac-492f-ac5e-63626d674fe1">
+
 
 [Visualization link](https://public.tableau.com/views/MelocotonRA1bis/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
@@ -329,11 +331,11 @@ WHERE product_original_price IS NOT NULL
 ```
 An average 719 units with an average price of 140.35 USD.
 
-<img width="1440" alt="image" src="https://github.com/user-attachments/assets/463b30b3-3b53-4f17-9e9d-2d2b7a03eecc">
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/703e75d3-a28e-4afa-b2db-1f8659ad72d9">
 
 [Visualization link](https://public.tableau.com/shared/FYHZ42SQF?:display_count=n&:origin=viz_share_link)
 
-<img width="1436" alt="image" src="https://github.com/user-attachments/assets/fc1c6d0b-0858-4c47-96a9-a9ee1057da0b">
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/eed41535-2d5a-402a-b653-6e7bb55107da">
 
 [Visualisatoin link](https://public.tableau.com/views/MelocotonRA1bis/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
@@ -354,11 +356,12 @@ WHERE product_original_price IS NULL
 ```
 An average of 513 units for an average price of 157,3 USD.
 
-<img width="1440" alt="image" src="https://github.com/user-attachments/assets/9faee5d7-1c2b-4ecf-ad82-262cf12dfbbf">  
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/4d8eba14-5557-4cc2-b4c1-3beb3d96e27e">
 
 [Visualization link ](https://public.tableau.com/views/MelocotonRA2/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
-<img width="1432" alt="image" src="https://github.com/user-attachments/assets/d246c7c8-7bf9-42a0-a2e1-306ad871294c">
+<img width="1432" alt="image" src="https://github.com/user-attachments/assets/e3ebccf8-5994-443d-ba06-90bfb22133a7">
+
 
 [Visualization link](https://public.tableau.com/views/MelocotonRA2bis/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
@@ -479,7 +482,7 @@ AND is_prime IS NOT TRUE
 34 products doesn't have the prime label. 
 771 units for products that are not Prime
 
-<img width="1438" alt="image" src="https://github.com/user-attachments/assets/56511f1d-215a-4d5a-8ab1-d8700a13960d">
+<img width="1439" alt="image" src="https://github.com/user-attachments/assets/4edd9220-5a27-4f01-9733-7c9018a62947">
 
 [Visualization link](https://public.tableau.com/views/averagesaleslabel2/avg_sales_prime?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
@@ -512,7 +515,7 @@ AND climate_pledge_friendly IS NOT TRUE
 71 products doesn't have
 An average of 688 units of products that don't have the climate pledge friendly label ws sold.
 
-<img width="1438" alt="image" src="https://github.com/user-attachments/assets/1f98c912-a50f-4e3e-997f-54fb7f7fa662">
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/6bb38faa-d3a7-4607-ab21-6685daa83995">
 
 [Visualization link](https://public.tableau.com/views/labelshaverasales/avg_sales_climate_pledge_friedly?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
@@ -557,7 +560,7 @@ AND has_variations IS NOT TRUE
 En average 708 units sold
 
 
-<img width="1439" alt="image" src="https://github.com/user-attachments/assets/4daed7cc-f8fd-4018-9e3f-9475c75ddc10">
+<img width="1436" alt="image" src="https://github.com/user-attachments/assets/bc30825d-0faa-4b97-b476-75dff4fb4c93">
 
 [Visualization link](https://public.tableau.com/views/Averagessalesofproductswithvariation/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
