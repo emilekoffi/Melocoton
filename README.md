@@ -19,8 +19,11 @@ Label analysis.
 
 # Process 
 For this analysis, I will be using the datasets: phone_search
+
 I'll use Google Sheet in order to clean the database. 
+
 Then I'll use BigQuerry for the SQL requests. 
+
 Tableau will be used also for visualization.
 
 
