@@ -46,7 +46,10 @@ Fotr the sake of the analysis, we're gonna consider as it was from the prior mon
 The cleaning is done in GoogleSheet. 
 
   - rermoving duplicates : select all rows; data ; cleaning data ; remove duplicates.
-21 rows eliminated, 320 rows left. 
+21 rows eliminated, 320 rows left.
+Now with the condiotionnal formating, I'll lookfor duplicate in the asin column (A). The asin, is supposed to be unique to a product. The rule is "=COUNTIF(A:A;A1)>1"
+4 product has duplicates : B09T3MQSVP, B09T3MQSVP, B0CMDRFVTL, B0CRVWPWKP.
+They haven't been deleted before because of slightly differences in stocks, or discount (9% instead of 10% but prices still are the same)
   - removing blank spaces : selact all rows; data; claening data ; remove blank space.
 none found
   - Looking for empty cells : her we are gonna look for all colomns except for B; D ; H; I; T; O;  U; V
