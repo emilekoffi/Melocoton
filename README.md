@@ -460,7 +460,7 @@ To take this a step further, let's see if the Amazon labels also have an impact 
 
 ```sql
 SELECT
-COUNT (DISTINCT asin)
+COUNT (DISTINCT asin) AS best_seller
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
@@ -473,12 +473,12 @@ There is only one product that does hae this label among the most sold products.
 **Does is_amazon_choice has an impact on the sales ?**
 ```sql
 SELECT
-COUNT (DISTINCT asin) AS best_seller
+COUNT (DISTINCT asin) AS is_amazon_choice
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
-AND is_best_seller IS TRUE
+AND is_amazon_choice IS TRUE
 ```
 There is also only one result also, this is not significative enough. 
 
@@ -531,8 +531,10 @@ AND is_prime IS NOT TRUE
 ```
 771 units for products that are not Prime
 
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/56511f1d-215a-4d5a-8ab1-d8700a13960d">
 
-Does the climate_pledge label has an impact on the sales ? 
+
+**Does the climate_pledge label has an impact on the sales ?**
 ```sql
 SELECT
 COUNT (DISTINCT asin),
@@ -557,7 +559,7 @@ AND climate_pledge_friendly IS NOT TRUE
 71 products doesn't have
 
 
-**How many units did they sold on an average?** 
+**How many units did they sold in average?** 
 ```sql
 SELECT
 ROUND(AVG(approx_past_month_sales_volume),0)
@@ -581,6 +583,9 @@ AND climate_pledge_friendly IS NOT TRUE
 ```
 
 An average of 688 units of products that don't have the climate pledge friendly label ws sold.
+
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/1f98c912-a50f-4e3e-997f-54fb7f7fa662">
+
 
 **Conclusion** : 
 I can see that labels have no significant influence on sales. 
