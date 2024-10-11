@@ -324,10 +324,10 @@ WHERE product_original_price IS NOT NULL
 An average 719 units with an average price of 140.35 USD.
 
 <img width="1440" alt="image" src="https://github.com/user-attachments/assets/463b30b3-3b53-4f17-9e9d-2d2b7a03eecc">
-[Visualization link]([url](https://public.tableau.com/shared/FYHZ42SQF?:display_count=n&:origin=viz_share_link)
+[Visualization link](https://public.tableau.com/shared/FYHZ42SQF?:display_count=n&:origin=viz_share_link)
 
 <img width="1436" alt="image" src="https://github.com/user-attachments/assets/fc1c6d0b-0858-4c47-96a9-a9ee1057da0b">
-[Visualisatoin link ](https://public.tableau.com/views/MelocotonRA1bis/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+[Visualisatoin link](https://public.tableau.com/views/MelocotonRA1bis/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
 
 **And how many non discounted products with a rating of at least 3.5 stars from at least 1,000 reviews have been sold and at what price ?**
