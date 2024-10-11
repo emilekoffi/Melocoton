@@ -485,31 +485,7 @@ There is also only one result also, this is not significative enough.
 **Does is_prime has an impact on the sales ?**
 ```sql
 SELECT
-COUNT (DISTINCT asin) AS is_prime
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-AND is_prime IS TRUE
-```
- There is 73 of these products that are PRME product. 
-
- ```sql
-SELECT
-COUNT (DISTINCT asin) AS is_not_prime
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-AND is_prime IS NOT TRUE
-```
- 
-34 products doesn't have the prime label.
- 
-**Which have more sales ?** 
-
-```sql
-SELECT
+COUNT (DISTINCT asin) AS is_prime,
 ROUND(AVG(approx_past_month_sales_volume),0) AS average_prime_sales
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
@@ -517,18 +493,21 @@ AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 AND is_prime IS TRUE
 ```
-
+There is 73 of these products that are PRME product. 
 629 units for prime products. 
 
-```sql
+
+ ```sql
 SELECT
+COUNT (DISTINCT asin) AS is_not_prime,
 ROUND(AVG(approx_past_month_sales_volume),0) AS average_not_prime_sales
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 AND is_prime IS NOT TRUE
-```
+``` 
+34 products doesn't have the prime label. 
 771 units for products that are not Prime
 
 <img width="1438" alt="image" src="https://github.com/user-attachments/assets/56511f1d-215a-4d5a-8ab1-d8700a13960d">
@@ -537,7 +516,8 @@ AND is_prime IS NOT TRUE
 **Does the climate_pledge label has an impact on the sales ?**
 ```sql
 SELECT
-COUNT (DISTINCT asin),
+COUNT (DISTINCT asin) AS is_climate_pledge_friendly, 
+ROUND(AVG(approx_past_month_sales_volume),0) AS avg_climate_pledge_friendly_sales
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
@@ -545,10 +525,13 @@ AND product_num_ratings >= 1000
 AND climate_pledge_friendly IS TRUE
 ```
 35 products. 
+642 units has been sold
+
 
 ```sql
 SELECT
 COUNT (DISTINCT asin) AS not_climate_pledge_friendly,
+ROUND(AVG(approx_past_month_sales_volume),0) AS avg_not_climate_pledge_friendly_sales
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
@@ -557,31 +540,6 @@ AND climate_pledge_friendly IS NOT TRUE
 ```
 
 71 products doesn't have
-
-
-**How many units did they sold in average?** 
-```sql
-SELECT
-ROUND(AVG(approx_past_month_sales_volume),0)
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-AND climate_pledge_friendly IS TRUE
-```
-
-642 units has been sold
-
-```sql
-SELECT
-ROUND(AVG(approx_past_month_sales_volume),0)
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-AND climate_pledge_friendly IS NOT TRUE
-```
-
 An average of 688 units of products that don't have the climate pledge friendly label ws sold.
 
 <img width="1438" alt="image" src="https://github.com/user-attachments/assets/1f98c912-a50f-4e3e-997f-54fb7f7fa662">
@@ -600,7 +558,8 @@ They therefore don't seem to play a decisive role in consumers' purchasing decis
 **How many products have variations?**
 ```sql
 SELECT
-COUNT (DISTINCT asin),
+COUNT (DISTINCT asin) AS has_variation,
+ROUND(AVG(approx_past_month_sales_volume),0) AS avg_has_variation_sales,
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
@@ -609,46 +568,23 @@ AND has_variations IS TRUE
 ```
 
 42 units
-
-**And how many units sold in average ?**
-```sql
-SELECT
-ROUND(AVG(approx_past_month_sales_volume),0)
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-AND has_variations IS TRUE
-```
-
 618 unts sold in average
 
 
 **How many products don't have variations?**
 ```sql
 SELECT
-COUNT (DISTINCT asin),
+COUNT (DISTINCT asin), AS without_variation
+ROUND(AVG(approx_past_month_sales_volume),0) AS avg_without_variation
 FROM `phone_search.phone_search_cleaned` 
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
 AND has_variations IS NOT TRUE
 ```
-
 64 products without variation. 
-
-**And how many units sold in average ?**
-```sql
-SELECT
-ROUND(AVG(approx_past_month_sales_volume),0)
-FROM `phone_search.phone_search_cleaned` 
-WHERE product_price > product_minimum_offer_price
-AND product_star_rating >= '3.5'
-AND product_num_ratings >= 1000
-AND has_variations IS NOT TRUE
-
-```
 En average 708 units sold
+
 
 <img width="1439" alt="image" src="https://github.com/user-attachments/assets/4daed7cc-f8fd-4018-9e3f-9475c75ddc10">
 
