@@ -100,7 +100,7 @@ There was only one item without free delivery.  I manually deleted the dollar si
 I manually delete the dollar sign in the 2 value of the unit_price column.
 
 I now have a clean dataset ready for use. 
-It has 315 lines
+It has 311 lines
 
 # Exploring the data. 
 
@@ -115,7 +115,7 @@ DISTINCT asin AS unique_asin
  FROM `phone_search.phone_search_cleaned`
 ```
 
-I now have 311 lines, meaning that 4 items were in double
+I have 311 lines, meaning that they're no more duplicates.
 
 
 ### A few questions. 
@@ -226,6 +226,8 @@ Products with discounts sold better than those without, but paradoxically the la
 
 
 
+
+
 **In order to determine whether the price of a product is very important in the consumer's choice of purchase, I'm going to check whether the best-selling products are in fact those whose price offer was the lowest.**
 ```sql
 SELECT 
@@ -245,7 +247,7 @@ WHERE product_price = product_minimum_offer_price
 AND product_num_offers > 1
 ```
 
-Il n'y a pas de résultat
+They're no results for this.
 
 ```sql
 SELECT 
@@ -257,6 +259,8 @@ AND product_num_offers > 1
 
 Products priced at the lowest offer sold an average of 514 units. 
 This means that when the consumer has had the choice of the same product at different prices, in the majority of cases, he hasn't chosen the cheapest offer and that the consumer only buys the products with the cheapest offer when he has no choice.
+
+
 
 
 Price analysis has shown that price cannot be the only criterion to be taken into consideration. 
