@@ -539,6 +539,21 @@ En average 708 units sold
 Consumers don't seem to be influenced by the fact that products have variations either.  
 
 
+## Here are some insights from the analysis: 
+
+Price is not an important criterion in consumers' purchasing decisions. 
+In fact, when given the choice between different offers, consumers do not, in the majority of cases, choose the most expensive one. 
+On the contrary, they seem to go for products that have been reviewed and rated highly. 
+Amazon's labels and certification don't have much impact either.
+Only Prime sells better than other labels.
+It's also the most widespread. 
+Product variations aren't a determining factor either.
+
+## Recommendations 
+Melocoton should focus its sourcing strategy more on quality products. 
+As for marketing, concentrate efforts on obtaining Prime certification, which is the most important of all. 
+
+
 
 
 
