@@ -140,6 +140,9 @@ Melocoton is highly interested in products whith at least 3.5 stats.
 **How many reviews is enough to be significative ?** 
 A minimum of 1,000 reviews is required for a rating to be considered significant. 
 
+**How many sales per product are we targeting ?** 
+At least 500
+
 ## Price analysis. 
 
 Does the price of the products plays a role on the sale ? 
@@ -232,7 +235,10 @@ Products with discounts sold better than those without, but paradoxically the la
 
 
 
-### In order to determine whether the price of a product is very important in the consumer's choice of purchase, I'm going to check whether the best-selling products are in fact those whose price offer was the lowest.
+### Is price a determining factor in consumer purchasing decisions? 
+
+In order to determine whether the price of a product is very important in the consumer's choice of purchase, I'm going to check whether the best-selling products are indeed those whose price offer was the lowest.
+
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
@@ -263,8 +269,6 @@ AND product_num_offers > 1
 
 Products priced at the lowest offer sold an average of 514 units. 
 This means that when the consumer has had the choice of the same product at different prices, in the majority of cases, he hasn't chosen the cheapest offer and that the consumer only buys the products with the cheapest offer when he has no choice.
-
-
 
 
 Price analysis has shown that price cannot be the only criterion to be taken into consideration. 
