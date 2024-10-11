@@ -645,6 +645,9 @@ AND has_variations IS NOT TRUE
 ```
 En average 708 units sold
 
+<img width="1439" alt="image" src="https://github.com/user-attachments/assets/4daed7cc-f8fd-4018-9e3f-9475c75ddc10">
+
+
 **Conclusion** : 
 Consumers don't seem to be influenced by the fact that products have variations either.  
 
