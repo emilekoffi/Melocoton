@@ -335,7 +335,7 @@ An average 719 units with an average price of 140.35 USD.
 
 [Visualization link](https://public.tableau.com/shared/FYHZ42SQF?:display_count=n&:origin=viz_share_link)
 
-<img width="1440" alt="image" src="https://github.com/user-attachments/assets/eed41535-2d5a-402a-b653-6e7bb55107da">
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/a961b572-439b-4644-86b7-d090a1193ae0">
 
 [Visualisatoin link](https://public.tableau.com/views/MelocotonRA1bis/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
