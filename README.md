@@ -1,15 +1,7 @@
 # Melocoton
 
 ## Overview
-Melocoton, is a young smartphone retailer company.
-The company is very dynamic, and in a space of a few year, business has been going pretty well, 3 shops have been launched in 3 different city.. 
-Facing such success, Sophia CEO and founder of the company, decided to face a new challenge. 
-Launch its marketplace on Amazon and conquer the online market.
-In order to do so, Sophia, the young entrepreneur, decided to plan a meeting with marketting and supply. 
-The purpose of this meeting is to understand how the market on amazon works.
-She wants to keep the same dynamic as the physical shops, and to do so it's important to know the rules. 
-At the end of this meeting, I have been task to analyse amazon sales in order to identify trends among the most sold product
-The compagny inteds to rely on this analyse to make up  sales strategy. 
+Melocoton is a young company selling smartphones. The company is very dynamic, and in the space of a few years, business has been booming, with 3 stores launched in 3 different cities. Faced with this success, Sophia, CEO and founder of the company, decided to take on a new challenge. Launch her marketplace on Amazon and conquer the online market. To do this, Sophia, the young entrepreneur, decided to schedule a meeting with the heads of marketing and supply chain. The aim of this meeting is to understand how the Amazon marketplace works. She wants to maintain the same dynamic as the physical stores, and to do this it's important to know the rules and trends of online sales. At the end of the meeting, I'm tasked with analyzing Amazon sales to identify trends in the best-selling products.
 
 The supply team gives you a selection of product that yoy will use for the analysis. 
 [Here is the link for the database used for this project.](https://www.kaggle.com/datasets/shreyasur965/phone-search-dataset)
@@ -38,69 +30,70 @@ The data is form Kaggle. There are few information about its authors, nor its pr
 We only jnow that the data was collected using the "Real-Time Amazon Data" API from RapidAPI.
 The dataset was generated using an automated query to retrieve real-time data on phones available on Amazon. For each query, phone-related product data (including prices, ratings, and availability) was fetched using the API. Data collection was done iteratively over 100 pages to cover a broad range of phones, ensuring the inclusion of various price ranges, product types, and customer reviews. The process utilized the following query parameters: Query: "Phone" (ensures data is filtered for phone products) Page: Each iteration requested a new page to retrieve different sets of products. Country: US (data was specific to the US market). Sorting: Data was sorted by relevance, ensuring a diverse selection of phone products.
 
-It is important to underlight that there are few information about the period of time in which this data is valid, nor hase been taken. 
-Fotr the sake of the analysis, we're gonna consider as it was from the prior month as we have sales data from the past month. 
+It is important to point out that there is little information on the period of validity of this data, and that it has not been taken. 
+For the purposes of analysis, we will consider the previous month, since we have sales data for the previous month. 
 
 **Now the cleaning**
 
 The cleaning is done in GoogleSheet. 
 
-  - rermoving duplicates : select all rows; data ; cleaning data ; remove duplicates.
-21 rows eliminated, 320 rows left.
-Now with the condiotionnal formating, I'll lookfor duplicate in the asin column (A). The asin, is supposed to be unique to a product. The rule is "=COUNTIF(A:A;A1)>1"
-4 product has duplicates : B09T3MQSVP, B09T3MQSVP, B0CMDRFVTL, B0CRVWPWKP.
-They haven't been deleted before because of slightly differences in stocks, or discount (9% instead of 10% but prices still are the same)
-  - removing blank spaces : selact all rows; data; claening data ; remove blank space.
-none found
-  - Looking for empty cells : her we are gonna look for all colomns except for B; D ; H; I; T; O;  U; V
-In order to underlight the empty cells, we are gonna use conditionnal formartting.
-On all these colomns A1:A320, C1:C320, K1:K320, L1:L320, N1:N320, Q1:Q320, R1:R320, S1:S320, E1:E320, F1:F320, G1:G320, J1:J320, M1:M320, P1:P320
-the rule is to show the cell in red if it's empty
-    - A : No empty cells
-    - C : 4 empty cells B0CMDLJR6K, B07ZHPCJW3, B07Z6Q9NCZ, B09R6FJWWS. As I don't really have information about when the data has been extracted, instead of using the        current price shown on the website, I delete the lines.
-    - E : No empty cells
-    - F : 3 empty cellsB0DFB9SNBR, B0D79Z15XR, B0DCQX683H. These cells are empty beccause the have never been rated as show the colomns G. The ceels value cannot be 0 as it will be incorrect. I'll put "/" instead.
-    - G : No empty cells
-    - J : No empty cells
-    - K : No empty cells
-    - L : No empty cells
-    - M : No empty cells
-    - N : No empty cells
-    - P  : No empty cells
-    - Q : 17 empty cells. As I filter the colomns, I notice that there are other values that don't indicate the sales volume on the past month such as : "List:", "More Buying Choices", "Typical:" , "Typical price:" ,Shop products from small business brands sold in Amazon’s store. Discover more about the small businesses partnering with Amazon and Amazon’s commitment to empowering them.". 26 in total
-After verifying th elink for each product, we realize that, there a no values, or not the right value has been imported because amazon doesn't show the past month sales volume if there are not equal or higher to 50.
-As those prodcut has been sold in beetween 0 and 49 times last month, we are going to use "25+ bought in past month" as a new value.
-25 as it is the mean value.
-    - R  : No empty cells
-    - S  : No empty cells
-   
+  - Remove duplicates: select all rows; data; clean data; remove duplicates.
+21 rows removed, 320 rows remaining.
+Now, using conditional formatting, I'm going to look for duplicates in the asin column (A). The reference is supposed to be unique for a product. The rule is as follows
+```
+ "=COUNTIF(A:A;A1)>1"
+```
+4 products have duplicates: B09T3MQSVP, B09T3MQSVP, B0CMDRFVTL, B0CRVWPWKP.
+They have not been removed before due to slight stock differences, or discounts (9% instead of 10% but prices are still the same).
 
-Now that I checked for duplicates, blank spaces,and empty cells, I'll proceed with making sure that the value have the best format to pêrfrom an alanysis later on. 
-I'll start with the all the price format. 
-As the the data base is extract form the USA amazon market, we can assume that all these datad are indeed in USD and I can then proceed to delete the dollar sign in colomn C, D, and K. 
-To delete de dollar sign : create a new colomn in between colomn C ans D. Select all colomn C except the title. then go to data -> split text -> use "$" as the customized separator. the new column now shows the price without the dollar sign. 
-I deleted the empty column and paste the title in the new column. 
-I repeat for the operation on D and L. 
+  - Removing empty cells: here we'll search for all columns except B; D; H; I; T; O; U; V
+To highlight empty cells, we'll use conditional formatting.
+On all these columns A1:A320, C1:C320, K1:K320, L1:L320, N1:N320, Q1:Q320, R1:R320, S1:S320, E1:E320, F1:F320, G1:G320, J1:J320, M1:M320, P1:P320
+the rule is to display the cell in red if it's empty
+    - A: No empty cells
+    - C: 4 empty cells B0CMDLJR6K, B07ZHPCJW3, B07Z6Q9NCZ, B09R6FJWWS. As I don't really have any information on the date of data extraction, instead of using the current price indicated on the website, I delete the rows.
+    - E: No empty cells
+    - F: 3 empty cellsB0DFB9SNBR, B0D79Z15XR, B0DCQX683H. These cells are empty because the products have never been evaluated, as shown in columns G. The value of the cells cannot be 0 as this would be incorrect. I'll put “/” instead.
+    - G: No empty cells
+    - J: No empty cells
+    - K: No empty cells
+    - L: No empty cells
+    - M: No empty cells
+    - N: No empty cells
+    - P: No empty cells
+    - Q: 17 empty cells. Filtering the columns, I notice that there are other values that don't indicate sales volume in the past month, such as: “List:”, “More buying choices”, “Typical: ” , “Typical price: ” ,Buy branded products from small businesses sold in the Amazon store. Learn more about Amazon's small business partners and Amazon's commitment to empowering them.” 26 in all
+After checking the link for each product, we realize that there is no value, or that the wrong value has been imported because Amazon does not display the previous month's sales volume if it is not equal to or greater than 50.
+As these products were sold between 0 and 49 times last month, we'll use “25+ purchased last month” as the new value.
+25 is the average value.
+    - R: No empty cells
+    - S: No empty cells
+
+Now that I've checked that there are no duplicates, blank spaces or empty cells, I'll make sure that the values have the best format so that they can be analyzed later. 
+I'll start with the format of all prices. 
+As the database is extracted from the US Amazon market, we can assume that all this data is indeed in USD and I can then proceed to remove the dollar sign from columns C, D and K. 
+To remove the dollar sign: create a new column between columns C and D. Then go to data -> split text -> use “$” as a custom separator. The new column now displays the price without the dollar sign. 
+I deleted the empty column and pasted the title into the new column. 
+I repeat the operation for D and L. 
 
 As the only currecny used is the USD, we can also delete E. 
 
-I relaize that the column P "sales_columes" have data that can be difficult to use in SQL. 
-I want to only keep nummers in this column. 
-To do so i'll split the text agin, using "+" as a seperator. 
-I now have for one part the number, and in the other part the text "bought in past month". 
-I delete this second column as I won't use it. 
-In my colomn i now have the numbers, only thing is that the thousands are written as "K", 2000 = 2K. 
-I remplace all the K with 000.  To do so : edit -> search and replace -> search K, replace by 000, search'!P:P, replace all. 
-I now change the title to "approx_past_month_sales_volume" as the value were not exact (4K+ for exemple). 
+I realize that column P “sales_columns” contains data that may be difficult to use in SQL. 
+I want to keep only the numbers in this column. 
+To do this, I split the text again, using “+” as a separator. 
+I now have the number on the one hand, and the text “bought in the last month” on the other. 
+I'm deleting this second column as I won't be using it. 
+In my column, I now have the numbers, except that the thousands are written as “K”, 2000 = 2K. 
+I replace all the Ks with 000s.  To do this: edit -> search and replace -> search K, replace by 000, search'!P:P, replace all. 
+I'm now changing the title to “approx_past_month_sales_volume” as the values are not exact (4K+ for example). 
 
-I'll proceed for the same type of operation vfor the delivery column. 
-I'll split it in 2 with delivery as the separator, and replace FREE by 0.
-There was only one item without free delivery.  I manually deleted the dollar sign. 
+I'm going to do the same for the delivery column. 
+I'll divide it into 2 with delivery as separator, and replace FREE by 0.
+There was only one item without free delivery.  I manually removed the dollar sign. 
 
-I manually delete the dollar sign in the 2 value of the unit_price column.
+I manually remove the dollar sign in value 2 of the unit_price column.
 
-I now have a clean dataset ready for use. 
-It has 311 lines
+I now have a clean dataset ready to use. 
+It contains 311 rows
 
 # Exploring the data. 
 
