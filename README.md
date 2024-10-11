@@ -179,7 +179,7 @@ ORDER BY discount DESC
 ```
 
 <img width="724" alt="image" src="https://github.com/user-attachments/assets/6d2bc64a-5c78-4a86-8b06-2c35d2ca2e0e">
-[Link]([url](https://public.tableau.com/views/MelocotonRA1bis/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link))
+[Link](https://public.tableau.com/views/MelocotonRA1bis/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
 
 I notice here that the products with the highest discounts are not the ones that sell the most.
