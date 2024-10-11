@@ -158,6 +158,8 @@ For the time being, it is difficult to establish a relationship between sales vo
 
 Sn, in order to establish this relationship, I'll start by analyzing whether products with discounts sell more than products without.
 
+
+
 ### Does dicounts attract more sales ? 
 
 ```sql
@@ -201,6 +203,8 @@ The products without discount sold an average 350.
 Last month, products with discounts sold better than those without.
 However, I'm not sure that the discounted products are the cheapest. 
 So I'll take a closer look.
+
+
 
 
 **I am now going to compare the average price of products with discount with the average sales af of product without discounts,**
