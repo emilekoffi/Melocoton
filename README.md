@@ -207,7 +207,7 @@ So I'll take a closer look.
 
 
 
-**I am now going to compare the average price of products with discount with the average sales af of product without discounts,**
+### I am now going to compare the average price of products with discount with the average sales af of product without discounts
 ```sql
 SELECT 
 ROUND (AVG(product_price),2) 
@@ -232,7 +232,7 @@ Products with discounts sold better than those without, but paradoxically the la
 
 
 
-**In order to determine whether the price of a product is very important in the consumer's choice of purchase, I'm going to check whether the best-selling products are in fact those whose price offer was the lowest.**
+### In order to determine whether the price of a product is very important in the consumer's choice of purchase, I'm going to check whether the best-selling products are in fact those whose price offer was the lowest.
 ```sql
 SELECT 
 ROUND (AVG(approx_past_month_sales_volume),0) 
