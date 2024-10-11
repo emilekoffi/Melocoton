@@ -640,11 +640,10 @@ FROM `phone_search.phone_search_cleaned`
 WHERE product_price > product_minimum_offer_price
 AND product_star_rating >= '3.5'
 AND product_num_ratings >= 1000
-AND climate_pledge_friendly IS TRUE
-AND has_variations IS TRUE
+AND has_variations IS NOT TRUE
 
 ```
-En average 718 units sold
+En average 708 units sold
 
 **Conclusion** : 
 Consumers don't seem to be influenced by the fact that products have variations either.  
