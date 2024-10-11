@@ -152,15 +152,15 @@ SELECT
 MAX(product_price),
 MIN(product_price)
 FROM `phone_search.phone_search_cleaned` 
-WHERE approx_past_month_sales_volume >=2000
 ```
 
+<img width="1437" alt="image" src="https://github.com/user-attachments/assets/442e2677-1dbd-40e3-a408-153a67290122">
 
-<img width="1165" alt="image" src="https://github.com/user-attachments/assets/7e65ab56-9ec8-4680-89d8-6f2742fa7dca">
+[Visualization link ](https://public.tableau.com/views/Melocoton1/Feuille1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link))
 
-For the time being, it is difficult to establish a relationship between sales volume and product price, as the best-selling products range in price from 18.45 to 287.3 USD.  
+For the time being, it is difficult to establish a relationship between sales volume and product price. 
 
-Sn, in order to establish this relationship, I'll start by analyzing whether products with discounts sell more than products without.
+So, in order to establish this relationship, I'll start by analyzing whether products with discounts sell more than products without.
 
 
 
